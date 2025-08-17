@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dive Community</title>
+  <style>
+    :root{
+      --btn-bg: rgba(7,20,28,0.78);
+      --btn-bg-hover: rgba(7,20,28,0.92);
+      --btn-text: #eaf8ff;
+      --accent: #00d1ff;
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+      --menu-bg: rgba(0,0,0,0.75);
+      --menu-border: rgba(255,255,255,0.18);
+      --active-bg: #0c2432;
+    }
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:#fff;
+      background: url('https://i.imgur.com/LrEYePg.jpeg') center/cover no-repeat fixed;
+      display:flex; align-items:center; justify-content:center;
+      text-align:center; position:relative; overflow:hidden;
+    }
+    body::before{
+      content:""; position:absolute; inset:0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.55) 20%, rgba(0,0,0,0.25) 60%, rgba(0,0,0,0.55) 100%);
+      pointer-events:none;
+    }
+
+    /* language widget */
+    .lang{
+      position: fixed; top:14px; right:16px; z-index:5;
+      display:flex; align-items:center; gap:8px;
+      user-select:none;
+    }
+    .lang-toggle{
+      padding:8px 10px; border-radius:10px;
+      background: var(--btn-bg); box-shadow: var(--shadow);
+      display:flex; align-items:center; gap:8px;
+      cursor:pointer; border:1px solid var(--menu-border);
+    }
+    .lang-toggle span{font-weight:700}
+    .caret{font-size:12px; opacity:.9}
+    .lang-menu{
+      position:absolute; top:44px; right:0;
+      background: var(--menu-bg);
+      border:1px solid var(--menu-border);
+      border-radius:12px; box-shadow: var(--shadow);
+      backdrop-filter: blur(4px);
+      padding:6px; min-width:220px; display:none;
+    }
+    .lang.open .lang-menu{ display:block }
+    .lang-grid{ display:grid; grid-template-columns: repeat(4, 1fr); gap:6px; }
+    .lang-btn{
+      border:1px solid var(--menu-border);
+      background: transparent; color:#fff;
+      padding:6px 0; border-radius:8px; cursor:pointer;
+      font-weight:700; letter-spacing:.3px; transition:.15s;
+    }
+    .lang-btn:hover{ background:rgba(255,255,255,0.12) }
+    .lang-btn.active{ background: var(--active-bg); border-color: transparent; color:#cfefff }
+
+    main{ position:relative; z-index:2; max-width:820px; padding:0 16px }
+    h1{
+      font-size:clamp(22px, 4vw, 36px);
+      margin:0 0 10px;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.8);
+    }
+    .sub{
+      font-size:clamp(14px, 2.2vw, 18px);
+      color:#dbeeff; opacity:.95;
+      margin:0 0 16px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+    }
+    .note{
+      font-size:15px;
+      margin:0 0 22px;
+      color:#e6f8ff;
+      opacity:.9;
+    }
+    .cta{
+      display:flex; flex-direction:column; gap:14px;
+      max-width:460px; margin:0 auto 16px;
+    }
+    .cta a{
+      text-decoration:none; font-weight:800; letter-spacing:.2px;
+      background: var(--btn-bg); color: var(--btn-text);
+      padding:14px 18px; border-radius:12px;
+      box-shadow: var(--shadow);
+      transition:.2s; outline:none;
+    }
+    .cta a:hover, .cta a:focus{ background: var(--btn-bg-hover); color:#fff }
+    .cta a span{ color: var(--accent) }
+    .foot{
+      margin-top:8px; font-size:15px; color:#e8f6ff; opacity:.95;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+    }
+  </style>
+</head>
+<body>
+  <!-- Language selector -->
+  <div class="lang" id="langWidget">
+    <div class="lang-toggle" id="langToggle" aria-haspopup="true" aria-expanded="false" aria-label="Language">
+      <div aria-hidden="true">🌐</div>
+      <span id="currentLang">RU</span>
+      <div class="caret">▾</div>
+    </div>
+    <div class="lang-menu" id="langMenu" role="menu">
+      <div class="lang-grid"></div>
+    </div>
+  </div>
+
+  <main>
+    <h1 id="title"></h1>
+    <p class="sub" id="subtitle"></p>
+    <p class="note" id="note"></p>
+
+    <div class="cta">
+      <a id="group1" href="https://www.facebook.com/groups/dive50plus/" target="_blank" rel="noopener"></a>
+      <a id="group2" href="https://www.facebook.com/groups/iscubakidsopen/" target="_blank" rel="noopener"></a>
+    </div>
+
+    <div class="foot" id="footer"></div>
+  </main>
+
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'ВАШ_PIXEL_ID'); 
+    fbq('track', 'PageView');
+  </script>
+
+  <script>
+    const texts = {
+      ru: {label:"RU", title:"Сообщество опытных дайверов и родителей юных дайверов",
+        subtitle:"Делимся опытом, планируем путешествия и объединяем поколения.",
+        note:"Это открытые сообщества в Facebook для общения, советов и совместных путешествий.",
+        g1:"Присоединиться к Dive 50Plus", g2:"Присоединиться к iScuba Kids (Дети и Море)",
+        footer:"Новые советы и маршруты каждую неделю — не упустите!"},
+      en: {label:"EN", title:"Community of Experienced Divers and Ocean Kids",
+        subtitle:"Sharing experience, planning adventures, and uniting generations.",
+        note:"These are open Facebook communities for tips, stories and shared adventures.",
+        g1:"Join Dive 50Plus", g2:"Join iScuba Kids (Children & Sea)",
+        footer:"New tips and routes every week — don’t miss out!"},
+      de: {label:"DE", title:"Gemeinschaft erfahrener Taucher und Eltern junger Meeresentdecker",
+        subtitle:"Wir teilen Erfahrungen, planen Reisen und verbinden Generationen.",
+        note:"Offene Facebook-Communities für Austausch, Tipps und gemeinsame Reisen.",
+        g1:"Beitreten zu Dive 50Plus", g2:"Beitreten zu iScuba Kids (Kinder & Meer)",
+        footer:"Neue Tipps und Routen jede Woche — verpassen Sie es nicht!"},
+      fr: {label:"FR", title:"Communauté de plongeurs expérimentés et de parents de jeunes explorateurs de l’océan",
+        subtitle:"Nous partageons nos expériences, planifions des voyages et relions les générations.",
+        note:"Communautés Facebook ouvertes pour conseils, échanges et aventures partagées.",
+        g1:"Rejoindre Dive 50Plus", g2:"Rejoindre iScuba Kids (Enfants & Mer)",
+        footer:"Nouveaux conseils et itinéraires chaque semaine — ne manquez pas ça !"},
+      es: {label:"ES", title:"Comunidad de buceadores experimentados y padres de jóvenes exploradores del océano",
+        subtitle:"Compartimos experiencia, planeamos viajes y unimos generaciones.",
+        note:"Comunidades abiertas en Facebook para consejos, historias y aventuras compartidas.",
+        g1:"Unirse a Dive 50Plus", g2:"Unirse a iScuba Kids (Niños y Mar)",
+        footer:"Nuevos consejos y rutas cada semana — ¡no te lo pierdas!"},
+      it: {label:"IT", title:"Comunità di sub esperti e genitori di giovani esploratori del mare",
+        subtitle:"Condividiamo esperienze, pianifichiamo viaggi e uniamo le generazioni.",
+        note:"Comunità Facebook aperte per consigli, racconti e viaggi condivisi.",
+        g1:"Unisciti a Dive 50Plus", g2:"Unisciti a iScuba Kids (Bambini & Mare)",
+        footer:"Nuovi consigli e rotte ogni settimana — non mancare!"},
+      vi: {label:"VI", title:"Cộng đồng thợ lặn giàu kinh nghiệm và phụ huynh của những nhà thám hiểm đại dương nhỏ",
+        subtitle:"Chia sẻ kinh nghiệm, lên kế hoạch hành trình và kết nối các thế hệ.",
+        note:"Cộng đồng Facebook mở để chia sẻ mẹo, câu chuyện và hành trình chung.",
+        g1:"Tham gia Dive 50Plus", g2:"Tham gia iScuba Kids (Trẻ em & Biển)",
+        footer:"Mẹo và hành trình mới mỗi tuần — đừng bỏ lỡ!"},
+      lv: {label:"LV", title:"Pieredzējušu nirēju un jauno okeāna pētnieku vecāku kopiena",
+        subtitle:"Dalāmies pieredzē, plānojam ceļojumus un vienojam paaudzes.",
+        note:"Atvērtas Facebook kopienas padomiem, sarunām un kopīgiem ceļojumiem.",
+        g1:"Pievienoties Dive 50Plus", g2:"Pievienoties iScuba Kids (Bērni un Jūra)",
+        footer:"Jauni padomi un maršruti katru nedēļu — nepalaidiet garām!"}
+    };
+
+    const langOrder = ["ru","en","de","fr","es","it","vi","lv"];
+    const ruCountries = ["RU","UA","BY","KZ","KG","MD","LV","LT","EE","AM","AZ","GE","UZ","TJ","TM"];
+
+    function render(lang){
+      const t = texts[lang] || texts.en;
+      document.getElementById("title").innerText=t.title;
+      document.getElementById("subtitle").innerText=t.subtitle;
+      document.getElementById("note").innerText=t.note;
+      document.getElementById("group1").innerText=t.g1;
+      document.getElementById("group2").innerText=t.g2;
+      document.getElementById("footer").innerText=t.footer;
+      document.getElementById("currentLang").innerText=t.label;
+      document.querySelectorAll(".lang-btn").forEach(b=>{
+        b.classList.toggle("active", b.dataset.lang===lang);
+      });
+      localStorage.setItem("lang", lang);
+      document.documentElement.lang=lang;
+    }
+
+    async function detectLang(){
+      const saved = localStorage.getItem("lang");
+      if(saved && texts[saved]) return saved;
+      if((navigator.language||"").toLowerCase().startsWith("ru")) return "ru";
+      try{
+        const res=await fetch("https://ipapi.co/json/");
+        const data=await res.json();
+        if(ruCountries.includes(data.country)) return "ru";
+      }catch(e){}
+      return "en";
+    }
+
+    function buildLangMenu(){
+      const grid=document.querySelector(".lang-grid");
+      grid.innerHTML="";
+      langOrder.forEach(code=>{
+        const btn=document.createElement("button");
+        btn.className="lang-btn";
+        btn.textContent=texts[code].label;
+        btn.dataset.lang=code;
+        btn.addEventListener("click",()=>{
+          render(code);
+          document.getElementById("langWidget").classList.remove("open");
+          document.getElementById("langToggle").setAttribute("aria-expanded","false");
+          fbq('trackCustom','select_language',{lang:code});
+        });
+        grid.appendChild(btn);
+      });
+    }
+
+    document.getElementById("langToggle").addEventListener("click",()=>{
+      const w=document.getElementById("langWidget");
+      const open=!w.classList.contains("open");
+      w.classList.toggle("open",open);
+      document.getElementById("langToggle").setAttribute("aria-expanded",String(open));
+    });
+    document.addEventListener("click",(e)=>{
+      if(!document.getElementById("langWidget").contains(e.target)){
+        document.getElementById("langWidget").classList.remove("open");
+        document.getElementById("langToggle").setAttribute("aria-expanded","false");
+      }
+    });
+
+    (async ()=>{ buildLangMenu(); render(await detectLang()); })();
+
+    // Pixel Events
+    setTimeout(()=>{ fbq('trackCustom','ViewContent_groups_7s'); },7000);
+    document.getElementById("group1").addEventListener("click",()=>{
+      fbq('trackCustom','Subscribe');
+      fbq('trackCustom','click_group50plus');
+    });
+    document.getElementById("group2").addEventListener("click",()=>{
+      fbq('trackCustom','Subscribe');
+      fbq('trackCustom','click_groupkids');
+    });
+  </script>
+</body>
+</html>
