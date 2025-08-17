@@ -53,7 +53,9 @@
       padding:6px; min-width:220px; display:none;
     }
     .lang.open .lang-menu{ display:block }
-    .lang-grid{ display:grid; grid-template-columns: repeat(4, 1fr); gap:6px; }
+    .lang-grid{
+      display:grid; grid-template-columns: repeat(4, 1fr); gap:6px;
+    }
     .lang-btn{
       border:1px solid var(--menu-border);
       background: transparent; color:#fff;
@@ -72,14 +74,13 @@
     .sub{
       font-size:clamp(14px, 2.2vw, 18px);
       color:#dbeeff; opacity:.95;
-      margin:0 0 16px;
+      margin:0 0 24px;
       text-shadow: 0 2px 10px rgba(0,0,0,0.7);
     }
-    .note{
-      font-size:15px;
-      margin:0 0 22px;
-      color:#e6f8ff;
-      opacity:.9;
+    .fomo{
+      font-size:16px; margin-bottom:20px;
+      color:#fff; opacity:.95;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.7);
     }
     .cta{
       display:flex; flex-direction:column; gap:14px;
@@ -95,7 +96,7 @@
     .cta a:hover, .cta a:focus{ background: var(--btn-bg-hover); color:#fff }
     .cta a span{ color: var(--accent) }
     .foot{
-      margin-top:8px; font-size:15px; color:#e8f6ff; opacity:.95;
+      margin-top:8px; font-size:14px; color:#e8f6ff; opacity:.95;
       text-shadow: 0 2px 10px rgba(0,0,0,0.7);
     }
   </style>
@@ -109,14 +110,14 @@
       <div class="caret">▾</div>
     </div>
     <div class="lang-menu" id="langMenu" role="menu">
-      <div class="lang-grid"></div>
+      <div class="lang-grid"><!-- buttons injected --></div>
     </div>
   </div>
 
   <main>
     <h1 id="title"></h1>
     <p class="sub" id="subtitle"></p>
-    <p class="note" id="note"></p>
+    <p class="fomo" id="fomo"></p>
 
     <div class="cta">
       <a id="group1" href="https://www.facebook.com/groups/dive50plus/" target="_blank" rel="noopener"></a>
@@ -126,7 +127,7 @@
     <div class="foot" id="footer"></div>
   </main>
 
-  <!-- Meta Pixel -->
+  <!-- Meta Pixel Base Code -->
   <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -139,74 +140,46 @@
     fbq('init', 'ВАШ_PIXEL_ID'); 
     fbq('track', 'PageView');
   </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=ВАШ_PIXEL_ID&ev=PageView&noscript=1"
+  /></noscript>
 
   <script>
     const texts = {
-      ru: {label:"RU", title:"Сообщество опытных дайверов и родителей юных дайверов",
-        subtitle:"Делимся опытом, планируем путешествия и объединяем поколения.",
-        note:"Это открытые сообщества в Facebook для общения, советов и совместных путешествий.",
-        g1:"Присоединиться к Dive 50Plus", g2:"Присоединиться к iScuba Kids (Дети и Море)",
-        footer:"Новые советы и маршруты каждую неделю — не упустите!"},
-      en: {label:"EN", title:"Community of Experienced Divers and Ocean Kids",
-        subtitle:"Sharing experience, planning adventures, and uniting generations.",
-        note:"These are open Facebook communities for tips, stories and shared adventures.",
-        g1:"Join Dive 50Plus", g2:"Join iScuba Kids (Children & Sea)",
-        footer:"New tips and routes every week — don’t miss out!"},
-      de: {label:"DE", title:"Gemeinschaft erfahrener Taucher und Eltern junger Meeresentdecker",
-        subtitle:"Wir teilen Erfahrungen, planen Reisen und verbinden Generationen.",
-        note:"Offene Facebook-Communities für Austausch, Tipps und gemeinsame Reisen.",
-        g1:"Beitreten zu Dive 50Plus", g2:"Beitreten zu iScuba Kids (Kinder & Meer)",
-        footer:"Neue Tipps und Routen jede Woche — verpassen Sie es nicht!"},
-      fr: {label:"FR", title:"Communauté de plongeurs expérimentés et de parents de jeunes explorateurs de l’océan",
-        subtitle:"Nous partageons nos expériences, planifions des voyages et relions les générations.",
-        note:"Communautés Facebook ouvertes pour conseils, échanges et aventures partagées.",
-        g1:"Rejoindre Dive 50Plus", g2:"Rejoindre iScuba Kids (Enfants & Mer)",
-        footer:"Nouveaux conseils et itinéraires chaque semaine — ne manquez pas ça !"},
-      es: {label:"ES", title:"Comunidad de buceadores experimentados y padres de jóvenes exploradores del océano",
-        subtitle:"Compartimos experiencia, planeamos viajes y unimos generaciones.",
-        note:"Comunidades abiertas en Facebook para consejos, historias y aventuras compartidas.",
-        g1:"Unirse a Dive 50Plus", g2:"Unirse a iScuba Kids (Niños y Mar)",
-        footer:"Nuevos consejos y rutas cada semana — ¡no te lo pierdas!"},
-      it: {label:"IT", title:"Comunità di sub esperti e genitori di giovani esploratori del mare",
-        subtitle:"Condividiamo esperienze, pianifichiamo viaggi e uniamo le generazioni.",
-        note:"Comunità Facebook aperte per consigli, racconti e viaggi condivisi.",
-        g1:"Unisciti a Dive 50Plus", g2:"Unisciti a iScuba Kids (Bambini & Mare)",
-        footer:"Nuovi consigli e rotte ogni settimana — non mancare!"},
-      vi: {label:"VI", title:"Cộng đồng thợ lặn giàu kinh nghiệm và phụ huynh của những nhà thám hiểm đại dương nhỏ",
-        subtitle:"Chia sẻ kinh nghiệm, lên kế hoạch hành trình và kết nối các thế hệ.",
-        note:"Cộng đồng Facebook mở để chia sẻ mẹo, câu chuyện và hành trình chung.",
-        g1:"Tham gia Dive 50Plus", g2:"Tham gia iScuba Kids (Trẻ em & Biển)",
-        footer:"Mẹo và hành trình mới mỗi tuần — đừng bỏ lỡ!"},
-      lv: {label:"LV", title:"Pieredzējušu nirēju un jauno okeāna pētnieku vecāku kopiena",
-        subtitle:"Dalāmies pieredzē, plānojam ceļojumus un vienojam paaudzes.",
-        note:"Atvērtas Facebook kopienas padomiem, sarunām un kopīgiem ceļojumiem.",
-        g1:"Pievienoties Dive 50Plus", g2:"Pievienoties iScuba Kids (Bērni un Jūra)",
-        footer:"Jauni padomi un maršruti katru nedēļu — nepalaidiet garām!"}
+      ru: {title:"Сообщества дайверов и родителей в Facebook", subtitle:"Открытые Facebook-группы для общения, советов и совместных путешествий.", fomo:"Участники уже готовятся к новым сафари и публикуют советы каждую неделю — присоединяйтесь!", g1:"Присоединиться к Dive 50Plus", g2:"Присоединиться к iScuba Kids (Дети и Море)", footer:"Море объединяет поколения 🌊", label:"RU"},
+      en: {title:"Facebook Communities for Divers and Parents", subtitle:"Open Facebook groups for sharing experience, tips and planning adventures.", fomo:"Members are already preparing for new safaris and posting tips every week — don’t miss out!", g1:"Join Dive 50Plus", g2:"Join iScuba Kids (Children & Sea)", footer:"The ocean unites generations 🌊", label:"EN"},
+      de: {title:"Facebook-Gemeinschaften für Taucher und Eltern", subtitle:"Offene Facebook-Gruppen zum Erfahrungsaustausch und zur Planung von Reisen.", fomo:"Mitglieder bereiten sich bereits auf neue Safaris vor und teilen wöchentlich Tipps — verpassen Sie es nicht!", g1:"Beitreten zu Dive 50Plus", g2:"Beitreten zu iScuba Kids (Kinder & Meer)", footer:"Der Ozean verbindet Generationen 🌊", label:"DE"},
+      fr: {title:"Communautés Facebook de plongeurs et de parents", subtitle:"Groupes Facebook ouverts pour partager, conseiller et planifier des voyages.", fomo:"Les membres préparent déjà de nouveaux safaris et partagent chaque semaine — ne manquez pas l’occasion!", g1:"Rejoindre Dive 50Plus", g2:"Rejoindre iScuba Kids (Enfants & Mer)", footer:"L’océan unit les générations 🌊", label:"FR"},
+      es: {title:"Comunidades de Facebook para buceadores y padres", subtitle:"Grupos de Facebook abiertos para compartir experiencias y planificar viajes.", fomo:"Los miembros ya se están preparando para nuevos safaris y comparten consejos cada semana — ¡no te lo pierdas!", g1:"Unirse a Dive 50Plus", g2:"Unirse a iScuba Kids (Niños y Mar)", footer:"El océano une generaciones 🌊", label:"ES"},
+      it: {title:"Comunità Facebook per subacquei e genitori", subtitle:"Gruppi Facebook aperti per condividere esperienze e pianificare viaggi.", fomo:"I membri stanno già preparando nuovi safari e condividono consigli ogni settimana — non perdere l’occasione!", g1:"Unisciti a Dive 50Plus", g2:"Unisciti a iScuba Kids (Bambini & Mare)", footer:"L’oceano unisce le generazioni 🌊", label:"IT"},
+      vi: {title:"Cộng đồng Facebook cho thợ lặn và phụ huynh", subtitle:"Các nhóm Facebook mở để chia sẻ kinh nghiệm và lên kế hoạch hành trình.", fomo:"Thành viên đã bắt đầu chuẩn bị cho các chuyến safari mới và chia sẻ mẹo hàng tuần — đừng bỏ lỡ!", g1:"Tham gia Dive 50Plus", g2:"Tham gia iScuba Kids (Trẻ em & Biển)", footer:"Đại dương kết nối các thế hệ 🌊", label:"VI"},
+      lv: {title:"Facebook kopienas nirējiem un vecākiem", subtitle:"Atvērtas Facebook grupas pieredzes apmaiņai un ceļojumu plānošanai.", fomo:"Dalībnieki jau gatavojas jaunām safari un katru nedēļu dalās ar padomiem — nepalaid garām!", g1:"Pievienoties Dive 50Plus", g2:"Pievienoties iScuba Kids (Bērni un Jūra)", footer:"Okeāns vieno paaudzes 🌊", label:"LV"}
     };
 
     const langOrder = ["ru","en","de","fr","es","it","vi","lv"];
     const ruCountries = ["RU","UA","BY","KZ","KG","MD","LV","LT","EE","AM","AZ","GE","UZ","TJ","TM"];
+    const $ = id => document.getElementById(id);
 
     function render(lang){
-      const t = texts[lang] || texts.en;
-      document.getElementById("title").innerText=t.title;
-      document.getElementById("subtitle").innerText=t.subtitle;
-      document.getElementById("note").innerText=t.note;
-      document.getElementById("group1").innerText=t.g1;
-      document.getElementById("group2").innerText=t.g2;
-      document.getElementById("footer").innerText=t.footer;
-      document.getElementById("currentLang").innerText=t.label;
-      document.querySelectorAll(".lang-btn").forEach(b=>{
-        b.classList.toggle("active", b.dataset.lang===lang);
-      });
-      localStorage.setItem("lang", lang);
+      const t=texts[lang]||texts.en;
+      $("title").innerText=t.title;
+      $("subtitle").innerText=t.subtitle;
+      $("fomo").innerText=t.fomo;
+      $("group1").innerText=t.g1;
+      $("group2").innerText=t.g2;
+      $("footer").innerText=t.footer;
       document.documentElement.lang=lang;
+      $("currentLang").innerText=t.label;
+      document.querySelectorAll(".lang-btn").forEach(b=>b.classList.toggle("active",b.dataset.lang===lang));
+      localStorage.setItem("lang",lang);
     }
 
     async function detectLang(){
-      const saved = localStorage.getItem("lang");
+      const saved=localStorage.getItem("lang");
       if(saved && texts[saved]) return saved;
-      if((navigator.language||"").toLowerCase().startsWith("ru")) return "ru";
+      const nav=(navigator.language||"en").toLowerCase();
+      const navCode=nav.split("-")[0];
+      if(texts[navCode]) return navCode;
       try{
         const res=await fetch("https://ipapi.co/json/");
         const data=await res.json();
@@ -225,36 +198,36 @@
         btn.dataset.lang=code;
         btn.addEventListener("click",()=>{
           render(code);
-          document.getElementById("langWidget").classList.remove("open");
-          document.getElementById("langToggle").setAttribute("aria-expanded","false");
-          fbq('trackCustom','select_language',{lang:code});
+          $("langWidget").classList.remove("open");
+          $("langToggle").setAttribute("aria-expanded","false");
         });
         grid.appendChild(btn);
       });
     }
 
-    document.getElementById("langToggle").addEventListener("click",()=>{
-      const w=document.getElementById("langWidget");
+    $("langToggle").addEventListener("click",()=>{
+      const w=$("langWidget");
       const open=!w.classList.contains("open");
       w.classList.toggle("open",open);
-      document.getElementById("langToggle").setAttribute("aria-expanded",String(open));
+      $("langToggle").setAttribute("aria-expanded",String(open));
     });
     document.addEventListener("click",(e)=>{
-      if(!document.getElementById("langWidget").contains(e.target)){
-        document.getElementById("langWidget").classList.remove("open");
-        document.getElementById("langToggle").setAttribute("aria-expanded","false");
+      if(!$("langWidget").contains(e.target)){
+        $("langWidget").classList.remove("open");
+        $("langToggle").setAttribute("aria-expanded","false");
       }
     });
 
     (async ()=>{ buildLangMenu(); render(await detectLang()); })();
 
-    // Pixel Events
+    // --- Pixel custom events ---
     setTimeout(()=>{ fbq('trackCustom','ViewContent_groups_7s'); },7000);
-    document.getElementById("group1").addEventListener("click",()=>{
+
+    $("group1").addEventListener("click",()=>{
       fbq('trackCustom','Subscribe');
       fbq('trackCustom','click_group50plus');
     });
-    document.getElementById("group2").addEventListener("click",()=>{
+    $("group2").addEventListener("click",()=>{
       fbq('trackCustom','Subscribe');
       fbq('trackCustom','click_groupkids');
     });
