@@ -10,7 +10,6 @@
       --bg1:#001823;
       --bg2:#00394c;
       --bg3:#005c74;
-      --glass: rgba(255,255,255,0.06);
       --border: rgba(255,255,255,0.12);
       --text: #eaf8ff;
       --muted:#cfe9f5;
@@ -31,7 +30,7 @@
       text-align:center; position:relative; overflow:hidden;
     }
 
-    /* water caustics background */
+    /* Живой водный фон из ЛОКАЛЬНОГО файла (лежит рядом с index.html) */
     .water{
       position:fixed; inset:-20% -20% -20% -20%;
       background: url('background-caustics.png') repeat;
@@ -47,6 +46,7 @@
       100%{ transform: translate3d(0,0,0) scale(1.1) rotate(0deg); }
     }
 
+    /* Лёгкое «дыхание» света */
     .shimmer{
       position:fixed; inset:0;
       background: radial-gradient(60% 40% at 70% 0%, rgba(0,209,255,0.12), transparent 60%),
@@ -61,7 +61,7 @@
       max-width:980px; padding:24px 18px 28px;
     }
 
-    /* language selector */
+    /* Переключатель языка */
     .lang{
       position: fixed; top:14px; right:16px; z-index:5;
       display:flex; align-items:center; gap:8px; user-select:none;
@@ -95,19 +95,15 @@
     .lang-btn:hover{ background:rgba(255,255,255,0.10) }
     .lang-btn.active{ background: rgba(255,255,255,0.14); border-color: transparent; color:#e9f6ff }
 
-    /* hero */
-    .hero{
-      margin: 24px auto 14px;
-    }
+    /* Hero */
+    .hero{ margin: 24px auto 14px; }
     .brand{
       font-weight:800; letter-spacing:.4px;
       font-size: clamp(12px, 1.8vw, 14px);
-      text-transform: uppercase;
-      color: var(--accent-2);
-      opacity:.9;
+      text-transform: uppercase; color: var(--accent-2); opacity:.9;
     }
     h1{
-      font-family: "Playfair Display", Georgia, serif;
+      font-family: Georgia, "Times New Roman", serif;
       font-size:clamp(24px, 4.2vw, 44px);
       margin:6px 0 8px;
       text-shadow: 0 2px 12px rgba(0,0,0,0.65);
@@ -120,26 +116,22 @@
     }
     .byline{
       font-size:clamp(12px, 1.8vw, 14px);
-      color:#cfe9f5; opacity:.9;
-      margin:0 0 16px;
+      color:#cfe9f5; opacity:.9; margin:0 0 16px;
     }
     .context{
       font-size:clamp(13px, 2vw, 17px);
-      color:#eaf6ff; opacity:.95;
-      margin:0 0 16px;
+      color:#eaf6ff; opacity:.95; margin:0 0 16px;
       text-shadow: 0 2px 8px rgba(0,0,0,0.6);
     }
 
-    /* cards */
+    /* Карточки групп */
     .cards{
-      display:grid;
-      grid-template-columns: 1fr;
+      display:grid; grid-template-columns: 1fr;
       gap:16px; margin: 0 auto 14px; max-width: 860px;
     }
     @media (min-width: 860px){
       .cards{ grid-template-columns: 1fr 1fr; }
     }
-
     .card{
       position:relative; overflow:hidden;
       border-radius: var(--radius);
@@ -147,8 +139,7 @@
       background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
       backdrop-filter: blur(6px);
       box-shadow: var(--shadow);
-      text-align:left;
-      isolation:isolate;
+      text-align:left; isolation:isolate;
     }
     .card::before{
       content:""; position:absolute; inset:0;
@@ -156,30 +147,23 @@
       z-index:-2; opacity:.16; transition:.4s ease;
       filter: saturate(110%) contrast(105%);
     }
-    .card--50::before{
-      background-image:url('bg-dive50plus.jpg');
-    }
-    .card--kids::before{
-      background-image:url('bg-iscubakids.jpg');
-    }
-    .card:hover::before{ opacity:.22; transform: scale(1.02);}
+    /* Фоновые фото карточек: добавьте файлы рядом с index.html.
+       Если их нет, сработает фолбэк-градиент через .card .inner */
+    .card--50::before{ background-image:url('bg-dive50plus.jpg'); }
+    .card--kids::before{ background-image:url('bg-iscubakids.jpg'); }
+    .card:hover::before{ opacity:.22; transform: scale(1.02); }
     .card .inner{
       padding:18px; position:relative; z-index:1;
-      background: linear-gradient(180deg, rgba(0,0,0,0.0), rgba(0,0,0,0.10));
+      background: linear-gradient(180deg, rgba(0,0,0,0.00), rgba(0,0,0,0.10));
     }
+    .card .inner:has(+ .no-bg), .card .inner:empty{ background: linear-gradient(180deg, rgba(0,0,0,0.10), rgba(0,0,0,0.14)); }
     .eyebrow{
       font-size:12px; letter-spacing:.32px; font-weight:800;
       text-transform: uppercase; color:#bfefff; opacity:.9; margin-bottom:6px;
     }
-    .title{
-      font-weight:900; font-size: clamp(18px, 2.6vw, 22px);
-      margin:0 0 6px;
-    }
-    .desc{
-      font-size: clamp(13px, 2vw, 16px);
-      color:#e6f6ff; opacity:.95; margin:0 0 12px;
-    }
-    .cta-row{ display:flex; align-items:center; gap:10px; }
+    .title{ font-weight:900; font-size: clamp(18px, 2.6vw, 22px); margin:0 0 6px; }
+    .desc{ font-size: clamp(13px, 2vw, 16px); color:#e6f6ff; opacity:.95; margin:0 0 12px; }
+    .cta-row{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
     .btn{
       appearance:none; border:none; cursor:pointer;
       padding:12px 16px; border-radius:12px; font-weight:800;
@@ -187,8 +171,8 @@
       transition:.2s; box-shadow: 0 6px 20px rgba(0,0,0,0.25);
     }
     .btn--50{ background: linear-gradient(180deg, #7ff1ff, #2fd3ff); }
+    .btn--50:hover, .btn--kids:hover{ transform: translateY(-1px); }
     .btn--kids{ background: linear-gradient(180deg, #b6ffcc, #52f2a5); }
-
     .hint{ font-size:12px; color:#cfe9f5; opacity:.9; }
 
     .fomo{ font-size:14px; margin:14px 0 8px; color:#e8f6ff; opacity:.95; }
@@ -197,9 +181,219 @@
   </style>
 </head>
 <body>
-  <div class="water"></div>
-  <div class="shimmer"></div>
+  <div class="water" aria-hidden="true"></div>
+  <div class="shimmer" aria-hidden="true"></div>
 
-  <!-- остальная структура (hero, карточки, язык, Pixel, тексты) — та же, что в предыдущей версии -->
+  <!-- Language -->
+  <div class="lang" id="langWidget">
+    <div class="lang-toggle" id="langToggle" aria-haspopup="true" aria-expanded="false" aria-label="Language">
+      <div aria-hidden="true">🌐</div>
+      <span id="currentLang">RU</span>
+      <div class="caret">▾</div>
+    </div>
+    <div class="lang-menu" id="langMenu" role="menu">
+      <div class="lang-grid"><!-- buttons injected --></div>
+    </div>
+  </div>
+
+  <main class="wrap" aria-label="Dive Communities">
+    <div class="hero">
+      <div class="brand" id="brand">iScuba.online</div>
+      <h1 id="title"></h1>
+      <p class="sub" id="subtitle"></p>
+      <p class="byline" id="byline"></p>
+      <p class="context" id="context"></p>
+    </div>
+
+    <section class="cards" aria-label="Communities list">
+      <!-- Dive 50Plus -->
+      <article class="card card--50">
+        <div class="inner">
+          <div class="eyebrow" id="eyebrow50"></div>
+          <h2 class="title" id="title50"></h2>
+          <p class="desc" id="desc50"></p>
+          <div class="cta-row">
+            <a class="btn btn--50" id="group1" href="https://www.facebook.com/groups/dive50plus/" target="_blank" rel="noopener"></a>
+            <span class="hint" id="hint50"></span>
+          </div>
+        </div>
+      </article>
+
+      <!-- iScuba Kids -->
+      <article class="card card--kids">
+        <div class="inner">
+          <div class="eyebrow" id="eyebrowKids"></div>
+          <h2 class="title" id="titleKids"></h2>
+          <p class="desc" id="descKids"></p>
+          <div class="cta-row">
+            <a class="btn btn--kids" id="group2" href="https://www.facebook.com/groups/iscubakidsopen/" target="_blank" rel="noopener"></a>
+            <span class="hint" id="hintKids"></span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <p class="fomo" id="fomo"></p>
+    <p class="pdfnote" id="pdfnote"></p>
+    <div class="foot" id="footer"></div>
+  </main>
+
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '675997335920840');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=675997335920840&ev=PageView&noscript=1"/></noscript>
+
+  <script>
+    // Тексты RU/EN
+    const texts = {
+      ru: {
+        brand:"iScuba.online",
+        title:"Сообщества для тех, кто любит море",
+        subtitle:"Открытые Facebook-группы для общения, опыта и совместных путешествий.",
+        byline:"© Виталий Пузырёв, инструктор-тренер SSI",
+        context:"🌊 Выберите сообщество, которое ближе вам:",
+        eyebrow50:"Зрелый дайвинг 50+",
+        title50:"Dive 50Plus — ныряем по-взрослому, без спешки",
+        desc50:"Осознанные погружения, комфорт, безопасность, хорошая компания и маршруты, которые хочется повторять.",
+        btn50:"Присоединиться к Dive 50Plus",
+        hint50:"PDF-чек-лист — в закрепе после вступления.",
+        eyebrowKids:"Дети и море",
+        titleKids:"iScuba Kids — первые вдохи под водой",
+        descKids:"Безопасный старт, привычки дыхания, уверенность и семейные приключения у воды.",
+        btnKids:"Присоединиться к iScuba Kids",
+        hintKids:"Советы, безопасность и семейные активности.",
+        fomo:"Участники готовятся к новым сафари и делятся опытом каждую неделю — присоединяйтесь!",
+        pdfnote:"📘 Полный чек-лист «7 неочевидных правил дайвера 50+» доступен после вступления в Dive 50Plus (смотрите закреп).",
+        footer:"Океан объединяет поколения 🌊",
+        label:"RU"
+      },
+      en: {
+        brand:"iScuba.online",
+        title:"Communities for people who love the ocean",
+        subtitle:"Open Facebook groups for conversation, experience sharing and trip planning.",
+        byline:"© Vitaliy Puziryov, SSI Instructor Trainer",
+        context:"🌊 Choose the community that feels right for you:",
+        eyebrow50:"Mature diving 50+",
+        title50:"Dive 50Plus — calm, confident diving",
+        desc50:"Mindful dives, comfort, safety, great company and routes worth repeating.",
+        btn50:"Join Dive 50Plus",
+        hint50:"PDF checklist is pinned after joining.",
+        eyebrowKids:"Kids & Sea",
+        titleKids:"iScuba Kids — first breaths underwater",
+        descKids:"Safe start, breathing habits, confidence and family adventures by the water.",
+        btnKids:"Join iScuba Kids",
+        hintKids:"Tips, safety and family activities.",
+        fomo:"Members are preparing new safaris and share insights weekly — join the conversation!",
+        pdfnote:"📘 The full checklist “7 Hidden Rules for Divers 50+” is available after joining Dive 50Plus (see pinned post).",
+        footer:"The ocean unites generations 🌊",
+        label:"EN"
+      }
+    };
+
+    const langOrder = ["ru","en"];
+    const ruCountries = ["RU","UA","BY","KZ","KG","MD","LV","LT","EE","AM","AZ","GE","UZ","TJ","TM"];
+    const $ = id => document.getElementById(id);
+
+    function render(lang){
+      const t = texts[lang] || texts.en;
+      $("brand").innerText = t.brand;
+      $("title").innerText = t.title;
+      $("subtitle").innerText = t.subtitle;
+      $("byline").innerText = t.byline;
+      $("context").innerText = t.context;
+
+      $("eyebrow50").innerText = t.eyebrow50;
+      $("title50").innerText = t.title50;
+      $("desc50").innerText = t.desc50;
+      $("group1").innerText = t.btn50;
+      $("hint50").innerText = t.hint50;
+
+      $("eyebrowKids").innerText = t.eyebrowKids;
+      $("titleKids").innerText = t.titleKids;
+      $("descKids").innerText = t.descKids;
+      $("group2").innerText = t.btnKids;
+      $("hintKids").innerText = t.hintKids;
+
+      $("fomo").innerText = t.fomo;
+      $("pdfnote").innerText = t.pdfnote;
+      $("footer").innerText = t.footer;
+
+      document.documentElement.lang = lang;
+      $("currentLang").innerText = t.label;
+      document.querySelectorAll(".lang-btn").forEach(b=>b.classList.toggle("active", b.dataset.lang===lang));
+      try{ localStorage.setItem("lang", lang); }catch(e){}
+    }
+
+    async function detectLang(){
+      try{
+        const saved = localStorage.getItem("lang");
+        if(saved && texts[saved]) return saved;
+      }catch(e){}
+      const nav = (navigator.language||"en").toLowerCase();
+      const navCode = nav.split("-")[0];
+      if(texts[navCode]) return navCode;
+      try{
+        const res = await fetch("https://ipapi.co/json/");
+        const data = await res.json();
+        if(ruCountries.includes(data.country)) return "ru";
+      }catch(e){}
+      return "en";
+    }
+
+    function buildLangMenu(){
+      const grid = document.querySelector(".lang-grid");
+      grid.innerHTML = "";
+      langOrder.forEach(code=>{
+        const btn = document.createElement("button");
+        btn.className = "lang-btn";
+        btn.textContent = texts[code].label;
+        btn.dataset.lang = code;
+        btn.addEventListener("click",()=>{
+          render(code);
+          langWidget.classList.remove("open");
+          langToggle.setAttribute("aria-expanded","false");
+        });
+        grid.appendChild(btn);
+      });
+    }
+
+    const langWidget = $("langWidget");
+    const langToggle = $("langToggle");
+    langToggle.addEventListener("click",()=>{
+      const open = !langWidget.classList.contains("open");
+      langWidget.classList.toggle("open", open);
+      langToggle.setAttribute("aria-expanded", String(open));
+    });
+    document.addEventListener("click",(e)=>{
+      if(!langWidget.contains(e.target)){
+        langWidget.classList.remove("open");
+        langToggle.setAttribute("aria-expanded","false");
+      }
+    });
+
+    (async ()=>{ buildLangMenu(); render(await detectLang()); })();
+
+    // Pixel custom events (без 3s)
+    setTimeout(()=>{ fbq('trackCustom','ViewContent_groups_7s'); },7000);
+
+    $("group1").addEventListener("click",()=>{
+      fbq('trackCustom','Subscribe');
+      fbq('trackCustom','click_group50plus');
+    });
+    $("group2").addEventListener("click",()=>{
+      fbq('trackCustom','Subscribe');
+      fbq('trackCustom','click_groupkids');
+    });
+  </script>
 </body>
 </html>
