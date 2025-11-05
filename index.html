@@ -3,13 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Dive Community – Dive 50Plus & iScuba Kids Groups</title>
-<meta name="description" content="Open Facebook groups for mature divers 50+ and for parents with kids who love the sea. Join and plan your next adventure." />
+<title>Dive Community – Dive 50Plus & iScuba Kids</title>
+<meta name="description" content="Open Facebook groups for divers 50+ and for parents with kids who love the sea. Join, share experience and plan adventures."/>
 <style>
 :root{
-  --bg1:#001823;
-  --bg2:#00394c;
-  --bg3:#005c74;
   --border: rgba(255,255,255,0.12);
   --text:#eaf8ff;
   --accent:#00d1ff;
@@ -24,46 +21,17 @@ html,body{height:100%}
 body{
   font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
   color:var(--text);
-  background:radial-gradient(1200px 800px at 20% 0%,var(--bg3) 0%,var(--bg2) 40%,var(--bg1) 100%);
-  display:flex;justify-content:center;
-  text-align:center;
-  overflow-x:hidden;           /* ✅ горизонт отключён */
-  overflow-y:auto;             /* ✅ скролл включён */
-  position:relative;
-}
-
-/* === UNDERWATER TEXTURE === */
-.water{
-  position: fixed;
-  inset: 0;
-  background-image: url('background-caustics.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;                /* ✅ масштаб по экрану */
-  background-position: center;
-  mix-blend-mode: overlay;
-  opacity: .18;                          /* умеренно видно */
-  animation: drift 60s ease-in-out infinite alternate;
-  filter: contrast(120%) brightness(110%) saturate(120%);
-  pointer-events: none;
-  z-index: 0;
-}
-@keyframes drift {
-  0%   { transform: scale(1.02) translate3d(0,0,0); }
-  50%  { transform: scale(1.05) translate3d(-2%, -2%, 0); }
-  100% { transform: scale(1.02) translate3d(1%, 1%, 0); }
-}
-
-/* === LIGHT SHIMMER === */
-.shimmer{
-  position:fixed;inset:0;
   background:
-    radial-gradient(60% 40% at 70% 0%,rgba(0,209,255,.12),transparent 60%),
-    radial-gradient(40% 25% at 20% 100%,rgba(0,180,255,.12),transparent 60%);
-  pointer-events:none;z-index:0;
-  animation:breathe 10s ease-in-out infinite;
+    linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.45) 40%, rgba(0,0,0,0.6) 100%),
+    url('background-caustics.jpg') center center / cover no-repeat fixed;
+  text-align:center;
+  min-height:100vh;
+  overflow-x:hidden;
+  overflow-y:auto;
+  display:flex;justify-content:center;
 }
-@keyframes breathe{0%,100%{opacity:.35}50%{opacity:.6}}
 
+/* === LAYOUT === */
 .wrap{position:relative;z-index:2;width:100%;max-width:980px;padding:28px 18px 60px;}
 
 /* === LANGUAGE === */
@@ -134,8 +102,6 @@ h1{font-family:Georgia,serif;font-size:clamp(26px,4.2vw,44px);margin:6px 0 8px;t
 </style>
 </head>
 <body>
-<div class="water" aria-hidden="true"></div>
-<div class="shimmer" aria-hidden="true"></div>
 
 <!-- === LANGUAGE SELECTOR === -->
 <div class="lang" id="langWidget">
