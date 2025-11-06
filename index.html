@@ -7,7 +7,7 @@
 <meta name="description" content="Открытые Facebook-группы для дайверов 50+ и родителей. Присоединяйтесь к Dive 50Plus и iScuba Kids.">
 
 <style>
-:root{
+:root {
   --text:#eaf8ff;
   --accent:#00d1ff;
   --accent2:#7ff1ff;
@@ -23,7 +23,8 @@ body{
   font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
   color:var(--text);
   background:url('background-ocean.jpg') center/cover no-repeat fixed;
-  min-height:100vh; display:flex; justify-content:center; align-items:flex-start;
+  min-height:100vh;
+  display:flex; justify-content:center; align-items:flex-start;
   text-align:center; position:relative; overflow-x:hidden;
 }
 body::before{
@@ -48,10 +49,10 @@ h1{font-family:Georgia,serif; font-size:clamp(26px,4vw,44px); margin:10px 0; tex
 .cards{display:grid; grid-template-columns:1fr; gap:20px; max-width:900px; margin:0 auto}
 @media (min-width:860px){ .cards{grid-template-columns:1fr 1fr} }
 
-/* Card (split layout: media + content) */
+/* Card */
 .card{
   display:grid;
-  grid-template-rows:180px auto;          /* mobile: фото сверху */
+  grid-template-rows:180px auto; /* mobile */
   border-radius:var(--radius);
   overflow:hidden;
   border:1px solid rgba(255,255,255,.12);
@@ -61,13 +62,13 @@ h1{font-family:Georgia,serif; font-size:clamp(26px,4vw,44px); margin:10px 0; tex
 }
 @media (min-width:860px){
   .card{
-    grid-template-columns:42% 58%;        /* desktop: фото слева, текст справа */
+    grid-template-columns:42% 58%;
     grid-template-rows:auto;
     min-height:320px;
   }
 }
 
-/* Media block (явное фото) */
+/* Media block */
 .media{
   position:relative; overflow:hidden;
   background:#01222f;
@@ -75,28 +76,24 @@ h1{font-family:Georgia,serif; font-size:clamp(26px,4vw,44px); margin:10px 0; tex
 .media::before{
   content:""; position:absolute; inset:0;
   background-size:cover; background-position:center;
-  filter:brightness(1.05) contrast(1.1) saturate(1.1);
   transform:scale(1.02);
+  filter:brightness(1.05) contrast(1.1) saturate(1.1);
 }
 .media--50::before {
   background-image: url('dive50plus-pro.jpg');
-  background-position: center 30%;
-  background-size: cover;
-  filter: brightness(1.05) contrast(1.15) saturate(1.05);
+  background-position: center 35%;
 }
-.media--50::before {
-  background-image: url('dive50plus-new.jpg');
-  background-position: center 40%;
-  background-size: cover;
+.media--kids::before {
+  background-image: url('bg-iscubakids-snorkel.jpg');
+  background-position: center top;
 }
-
-.media::after{ /* лёгкая виньетка по углам — подчёркивает фото */
+.media::after{
   content:""; position:absolute; inset:0;
   box-shadow:inset 0 0 120px rgba(0,0,0,.35);
   pointer-events:none;
 }
 
-/* Content block */
+/* Content */
 .inner{padding:22px}
 @media (min-width:860px){ .inner{padding:26px 24px} }
 
@@ -115,13 +112,18 @@ h1{font-family:Georgia,serif; font-size:clamp(26px,4vw,44px); margin:10px 0; tex
 
 .hint{display:block; font-size:12px; color:#cfe9f5; margin-top:10px}
 
-/* Footer texts */
+/* Footer */
 .fomo{margin-top:26px; font-size:15px; opacity:.9}
 .pdfnote{margin-top:8px; font-size:14px; opacity:.95}
 .footer{margin-top:10px; font-size:13px; opacity:.9}
 
-/* Lang pill (оставляем как индикатор) */
-.lang{position:fixed; top:16px; right:16px; background:rgba(0,0,0,.55); border-radius:10px; padding:8px 12px; font-weight:700; box-shadow:var(--shadow); user-select:none}
+/* Lang indicator */
+.lang{
+  position:fixed; top:16px; right:16px;
+  background:rgba(0,0,0,.55); border-radius:10px;
+  padding:8px 12px; font-weight:700;
+  box-shadow:var(--shadow); user-select:none;
+}
 </style>
 </head>
 <body>
