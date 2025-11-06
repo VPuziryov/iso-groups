@@ -3,163 +3,178 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Dive Community – Dive 50Plus & iScuba Kids</title>
-<meta name="description" content="Open Facebook groups for divers 50+ and for parents with kids who love the sea. Join, share experience and plan adventures."/>
+<title>Dive Community — Dive 50Plus & iScuba Kids</title>
+<meta name="description" content="Открытые Facebook-группы для дайверов 50+ и родителей, которые хотят приобщить детей к морю. Присоединяйтесь!">
 <style>
-:root{
-  --border: rgba(255,255,255,0.12);
-  --text:#eaf8ff;
-  --accent:#00d1ff;
-  --accent2:#7ff1ff;
-  --shadow:0 10px 30px rgba(0,0,0,.35);
-  --radius:16px;
+:root {
+  --accent: #00d1ff;
+  --accent2: #7ff1ff;
+  --text: #eaf8ff;
+  --overlay: rgba(0,0,0,0.45);
+  --shadow: 0 10px 30px rgba(0,0,0,0.35);
+  --radius: 18px;
 }
-
-/* === BASE === */
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
-body{
-  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  color:var(--text);
-  background:
-    linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.45) 40%, rgba(0,0,0,0.6) 100%),
-    url('background-ocean.jpg') center center / cover no-repeat fixed;
-  text-align:center;
-  min-height:100vh;
-  overflow-x:hidden;
-  overflow-y:auto;
-  display:flex;justify-content:center;
-  filter: brightness(90%) contrast(95%);
-  background-color:#001f2c;
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: url('background-ocean.jpg') center / cover no-repeat fixed;
+  text-align: center;
+  min-height: 100vh;
+  display: flex; justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
 }
-
-/* === LAYOUT === */
-.wrap{position:relative;z-index:2;width:100%;max-width:980px;padding:28px 18px 60px;}
-
-/* === LANGUAGE === */
-.lang{position:fixed;top:14px;right:16px;z-index:5;display:flex;align-items:center;gap:8px;}
-.lang-toggle{
-  padding:8px 12px;border-radius:12px;
-  background:rgba(255,255,255,.08);
-  backdrop-filter:blur(4px);
-  box-shadow:var(--shadow);
-  display:flex;align-items:center;gap:8px;cursor:pointer;
-  border:1px solid var(--border);
+body::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.25), rgba(0,0,0,0.55));
+  z-index: 0;
 }
-.lang-toggle span{font-weight:700}
-.caret{font-size:12px;opacity:.9}
-.lang-menu{
-  position:absolute;top:44px;right:0;
-  background:rgba(0,0,0,.7);
-  border:1px solid var(--border);
-  border-radius:12px;box-shadow:var(--shadow);
-  backdrop-filter:blur(6px);
-  padding:6px;min-width:180px;display:none;
+.wrap {
+  position: relative; z-index: 2;
+  width: 100%; max-width: 1000px;
+  padding: 40px 20px 80px;
 }
-.lang.open .lang-menu{display:block}
-.lang-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;}
-.lang-btn{
-  border:1px solid var(--border);background:transparent;color:#fff;
-  padding:8px 0;border-radius:10px;cursor:pointer;
-  font-weight:700;letter-spacing:.3px;transition:.15s;
-}
-.lang-btn:hover{background:rgba(255,255,255,.10)}
-.lang-btn.active{background:rgba(255,255,255,.14);border-color:transparent;color:#e9f6ff}
 
 /* === HERO === */
-.hero{margin:32px auto 18px}
-.brand{font-weight:800;letter-spacing:.4px;font-size:13px;text-transform:uppercase;color:var(--accent2);opacity:.9;}
-h1{font-family:Georgia,serif;font-size:clamp(26px,4.2vw,44px);margin:6px 0 8px;text-shadow:0 2px 12px rgba(0,0,0,.65);}
-.sub{font-size:clamp(14px,2.1vw,18px);color:#dbeeff;opacity:.95;margin-bottom:14px;text-shadow:0 2px 10px rgba(0,0,0,.6);}
-.byline{font-size:13px;color:#cfe9f5;opacity:.9;margin-bottom:20px;}
-.context{font-size:clamp(13px,2vw,17px);color:#eaf6ff;opacity:.95;margin-bottom:20px;text-shadow:0 2px 8px rgba(0,0,0,.6);}
+.brand { font-weight: 800; color: var(--accent2); letter-spacing: .4px; font-size: 13px; text-transform: uppercase; opacity: .9; }
+h1 {
+  font-size: clamp(26px, 4vw, 44px);
+  font-family: Georgia, serif;
+  text-shadow: 0 2px 14px rgba(0,0,0,0.6);
+  margin: 10px 0;
+}
+.sub { color: #dbeeff; opacity: .95; font-size: clamp(15px, 2vw, 18px); margin-bottom: 16px; }
+.byline { font-size: 13px; opacity: .9; margin-bottom: 22px; }
+.context { font-size: 17px; margin-bottom: 20px; }
 
 /* === CARDS === */
-.cards{display:grid;grid-template-columns:1fr;gap:18px;margin:auto;max-width:860px;}
-@media(min-width:860px){.cards{grid-template-columns:1fr 1fr}}
-.card{
-  position:relative;overflow:hidden;border-radius:var(--radius);
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.05);backdrop-filter:blur(6px);
-  box-shadow:var(--shadow);text-align:left;
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin: auto;
+  max-width: 880px;
 }
-.card .inner{padding:20px;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.10))}
-.eyebrow{font-size:12px;letter-spacing:.32px;font-weight:800;text-transform:uppercase;color:#bfefff;opacity:.9;margin-bottom:6px;}
-.title{font-weight:900;font-size:clamp(18px,2.6vw,22px);margin:0 0 6px;}
-.desc{font-size:clamp(13px,2vw,16px);color:#e6f6ff;opacity:.95;margin:0 0 12px;}
-.cta-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
-.btn{
-  border:none;cursor:pointer;padding:12px 16px;border-radius:12px;
-  font-weight:800;letter-spacing:.2px;text-decoration:none;color:#00121a;
-  transition:.2s;box-shadow:0 6px 20px rgba(0,0,0,.25);
+@media (min-width: 860px) {
+  .cards { grid-template-columns: 1fr 1fr; }
 }
-.btn--50{background:linear-gradient(180deg,#7ff1ff,#2fd3ff);}
-.btn--kids{background:linear-gradient(180deg,#b6ffcc,#52f2a5);}
-.btn:hover{transform:translateY(-1px);}
-.hint{font-size:12px;color:#cfe9f5;opacity:.9;}
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: var(--shadow);
+  text-align: left;
+  color: #fff;
+  min-height: 340px;
+}
+.card::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.7) contrast(1.05);
+  transition: transform 0.8s ease;
+}
+.card:nth-child(1)::before { background-image: url('dive50plus-bg.jpg'); }
+.card:nth-child(2)::before { background-image: url('bg-iscubakids-snorkel.jpg'); }
+.card:hover::before { transform: scale(1.05); }
 
-.fomo{font-size:14px;margin:18px 0 10px;color:#e8f6ff;opacity:.95;}
-.pdfnote{font-size:14px;color:#e8f6ff;opacity:.95;margin-bottom:8px;}
-.foot{font-size:13px;color:#cfe9f5;opacity:.9;}
+.card .overlay {
+  position: absolute; inset: 0;
+  background: var(--overlay);
+  backdrop-filter: blur(3px);
+}
+.inner {
+  position: relative;
+  padding: 24px;
+  z-index: 2;
+}
+.eyebrow {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--accent2);
+  opacity: .9;
+  margin-bottom: 6px;
+}
+.title { font-weight: 900; font-size: 22px; margin: 0 0 8px; }
+.desc { font-size: 15px; color: #eaf6ff; margin-bottom: 16px; opacity: .95; }
+.btn {
+  display: inline-block;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-weight: 800;
+  text-decoration: none;
+  color: #00121a;
+  box-shadow: 0 6px 20px rgba(0,0,0,.25);
+  transition: .2s;
+}
+.btn--50 { background: linear-gradient(180deg,#7ff1ff,#2fd3ff); }
+.btn--kids { background: linear-gradient(180deg,#b6ffcc,#52f2a5); }
+.btn:hover { transform: translateY(-1px); }
+.hint { display: block; font-size: 12px; color: #cfe9f5; margin-top: 10px; }
 
-/* === Mobile optimization fix === */
-@media (max-width: 1024px) {
-  body {
-    background-attachment: scroll !important;
-    background-position: center top;
-  }
+.fomo { margin-top: 30px; font-size: 15px; opacity: .9; }
+.pdfnote { margin-top: 8px; font-size: 14px; opacity: .95; }
+.footer { margin-top: 10px; font-size: 13px; opacity: .9; }
+
+/* === LANG === */
+.lang {
+  position: fixed;
+  top: 16px; right: 16px;
+  background: rgba(0,0,0,.55);
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-weight: 700;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  user-select: none;
 }
 </style>
 </head>
 <body>
-
-<!-- === LANGUAGE SELECTOR === -->
-<div class="lang" id="langWidget">
-  <div class="lang-toggle" id="langToggle" aria-haspopup="true" aria-expanded="false"><div>🌐</div><span id="currentLang">RU</span><div class="caret">▾</div></div>
-  <div class="lang-menu" id="langMenu"><div class="lang-grid"></div></div>
-</div>
+<div class="lang" id="langToggle">🌐 <span id="currentLang">RU</span></div>
 
 <main class="wrap">
-  <div class="hero">
-    <div class="brand" id="brand"></div>
-    <h1 id="title"></h1>
-    <p class="sub" id="subtitle"></p>
-    <p class="byline" id="byline"></p>
-    <p class="context" id="context"></p>
-  </div>
+  <div class="brand" id="brand">iScuba.online</div>
+  <h1 id="title">Сообщества для тех, кто любит море</h1>
+  <p class="sub" id="subtitle">Открытые Facebook-группы для общения, опыта и путешествий.</p>
+  <p class="byline">© Виталий Пузырёв, инструктор-тренер SSI</p>
+  <p class="context">🌊 Выберите сообщество, которое ближе вам:</p>
 
   <section class="cards">
     <article class="card">
+      <div class="overlay"></div>
       <div class="inner">
-        <div class="eyebrow" id="eyebrow50"></div>
-        <h2 class="title" id="title50"></h2>
-        <p class="desc" id="desc50"></p>
-        <div class="cta-row">
-          <a class="btn btn--50" id="group1" href="https://www.facebook.com/groups/dive50plus/" target="_blank"></a>
-          <span class="hint" id="hint50"></span>
-        </div>
+        <div class="eyebrow">Зрелый дайвинг 50+</div>
+        <h2 class="title">Dive 50Plus — ныряем по-взрослому</h2>
+        <p class="desc">Осознанные погружения, комфорт и маршруты, которые хочется повторять.</p>
+        <a href="https://www.facebook.com/groups/dive50plus/" class="btn btn--50" target="_blank" rel="noopener">Присоединиться к Dive 50Plus</a>
+        <span class="hint">PDF-чек-лист в закрепе после вступления.</span>
       </div>
     </article>
 
     <article class="card">
+      <div class="overlay"></div>
       <div class="inner">
-        <div class="eyebrow" id="eyebrowKids"></div>
-        <h2 class="title" id="titleKids"></h2>
-        <p class="desc" id="descKids"></p>
-        <div class="cta-row">
-          <a class="btn btn--kids" id="group2" href="https://www.facebook.com/groups/iscubakidsopen/" target="_blank"></a>
-          <span class="hint" id="hintKids"></span>
-        </div>
+        <div class="eyebrow">Дети и море</div>
+        <h2 class="title">iScuba Kids — первые вдохи под водой</h2>
+        <p class="desc">Безопасный старт, уверенность и семейные приключения у воды.</p>
+        <a href="https://www.facebook.com/groups/iscubakidsopen/" class="btn btn--kids" target="_blank" rel="noopener">Присоединиться к iScuba Kids</a>
+        <span class="hint">Советы и активности для родителей.</span>
       </div>
     </article>
   </section>
 
-  <p class="fomo" id="fomo"></p>
-  <p class="pdfnote" id="pdfnote"></p>
-  <div class="foot" id="footer"></div>
+  <p class="fomo">Участники делятся опытом и планируют сафари каждую неделю — присоединяйтесь!</p>
+  <p class="pdfnote">📘 Чек-лист «7 неочевидных правил дайвера 50+» — в группе Dive 50Plus.</p>
+  <div class="footer">Океан объединяет поколения 🌊</div>
 </main>
 
-<!-- === META PIXEL === -->
+<!-- === Pixel === -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -168,87 +183,7 @@ n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;
 s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
 (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','675997335920840');fbq('track','PageView');
-</script>
-
-<script>
-const texts={
-  ru:{brand:"iScuba.online",title:"Сообщества для тех, кто любит море",
-  subtitle:"Открытые Facebook-группы для общения, опыта и путешествий.",
-  byline:"© Виталий Пузырёв, инструктор-тренер SSI",
-  context:"🌊 Выберите сообщество, которое ближе вам:",
-  eyebrow50:"Зрелый дайвинг 50+",title50:"Dive 50Plus — ныряем по-взрослому",
-  desc50:"Осознанные погружения, комфорт и маршруты, которые хочется повторять.",
-  btn50:"Присоединиться к Dive 50Plus",hint50:"PDF-чек-лист в закрепе после вступления.",
-  eyebrowKids:"Дети и море",titleKids:"iScuba Kids — первые вдохи под водой",
-  descKids:"Безопасный старт, уверенность и семейные приключения у воды.",
-  btnKids:"Присоединиться к iScuba Kids",hintKids:"Советы и активности для родителей.",
-  fomo:"Участники делятся опытом и планируют сафари каждую неделю — присоединяйтесь!",
-  pdfnote:"📘 Чек-лист «7 неочевидных правил дайвера 50+» — в группе Dive 50Plus.",
-  footer:"Океан объединяет поколения 🌊",label:"RU"},
-  en:{brand:"iScuba.online",title:"Communities for those who love the ocean",
-  subtitle:"Open Facebook groups for divers and parents to connect and share.",
-  byline:"© Vitaliy Puziryov, SSI Instructor Trainer",
-  context:"🌊 Choose your community:",
-  eyebrow50:"Mature diving 50+",title50:"Dive 50Plus — calm & confident diving",
-  desc50:"Mindful dives, comfort, safety and routes worth repeating.",
-  btn50:"Join Dive 50Plus",hint50:"PDF checklist is pinned after joining.",
-  eyebrowKids:"Kids & Sea",titleKids:"iScuba Kids — first breaths underwater",
-  descKids:"Safe start, confidence and family adventures by the water.",
-  btnKids:"Join iScuba Kids",hintKids:"Tips and activities for parents.",
-  fomo:"Members share insights and plan new safaris every week — join us!",
-  pdfnote:"📘 Checklist “7 Hidden Rules for Divers 50+” is in Dive 50Plus group.",
-  footer:"The ocean unites generations 🌊",label:"EN"}
-};
-const langOrder=["ru","en"];const ruCountries=["RU","UA","BY","KZ","LV","LT","EE"];
-const $=id=>document.getElementById(id);
-
-function render(lang){
-  const t=texts[lang]||texts.en;
-  ["brand","title","subtitle","byline","context","eyebrow50","title50","desc50",
-   "eyebrowKids","titleKids","descKids","fomo","pdfnote","footer"].forEach(k=>{
-     if($(k))$(k).innerText=t[k]||"";
-   });
-  $("group1").innerText=t.btn50;$("group2").innerText=t.btnKids;
-  $("hint50").innerText=t.hint50;$("hintKids").innerText=t.hintKids;
-  document.documentElement.lang=lang;
-  $("currentLang").innerText=t.label;
-  document.querySelectorAll(".lang-btn").forEach(b=>b.classList.toggle("active",b.dataset.lang===lang));
-  localStorage.setItem("lang",lang);
-}
-
-async function detectLang(){
-  const saved=localStorage.getItem("lang");
-  if(saved&&texts[saved])return saved;
-  const nav=(navigator.language||"en").toLowerCase();
-  const code=nav.split("-")[0];if(texts[code])return code;
-  try{const r=await fetch("https://ipapi.co/json/");const d=await r.json();
-  if(ruCountries.includes(d.country))return"ru";}catch(e){}
-  return"en";
-}
-
-function buildLangMenu(){
-  const grid=document.querySelector(".lang-grid");grid.innerHTML="";
-  langOrder.forEach(code=>{
-    const btn=document.createElement("button");
-    btn.className="lang-btn";btn.textContent=texts[code].label;btn.dataset.lang=code;
-    btn.addEventListener("click",()=>{render(code);langWidget.classList.remove("open");});
-    grid.appendChild(btn);
-  });
-}
-
-const langWidget=$("langWidget"),langToggle=$("langToggle");
-langToggle.addEventListener("click",()=>{
-  langWidget.classList.toggle("open",!langWidget.classList.contains("open"));
-});
-document.addEventListener("click",e=>{
-  if(!langWidget.contains(e.target))langWidget.classList.remove("open");
-});
-
-(async()=>{buildLangMenu();render(await detectLang());})();
 setTimeout(()=>fbq('trackCustom','ViewContent_groups_7s'),7000);
-["group1","group2"].forEach(id=>{
-  $(id).addEventListener("click",()=>fbq('trackCustom','Subscribe'));
-});
 </script>
 </body>
 </html>
