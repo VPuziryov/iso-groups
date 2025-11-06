@@ -4,11 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Dive Community — iScuba.online</title>
-<meta name="description" content="Открытые Facebook-группы для общения, опыта и путешествий. Dive 50Plus и iScuba Kids — дайвинг для взрослых и детей.">
+<meta name="description" content="Dive 50Plus и iScuba Kids — открытые Facebook-сообщества для взрослых и детей, кто любит море и подводный мир.">
 <meta http-equiv="Content-Language" content="ru">
 <meta name="language" content="Russian">
 
-<!-- Alternate hreflang for SEO -->
 <link rel="alternate" hreflang="en" href="https://groups.iscuba.online/en/" />
 <link rel="alternate" hreflang="de" href="https://groups.iscuba.online/de/" />
 <link rel="alternate" hreflang="fr" href="https://groups.iscuba.online/fr/" />
@@ -16,10 +15,11 @@
 
 <style>
 :root{
-  --text:#eaf8ff;
-  --accent:#00d1ff;
-  --accent2:#7ff1ff;
-  --accent3:#52f2a5;
+  --text:#e9f5ff;
+  --text-strong:#ffffff;
+  --accent:#00c9ff;
+  --accent2:#7eeaff;
+  --accent3:#4fe5a0;
   --shadow:0 10px 28px rgba(0,0,0,.35);
   --radius:18px;
 }
@@ -27,53 +27,43 @@
 /* Base */
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
-body {
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
-  color: var(--text);
-  background-color: #001f2c;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  text-align: center;
-  position: relative;
-  overflow-x: hidden;
+body{
+  font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  color:var(--text);
+  background-color:#001f2c;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  text-align:center;
+  position:relative;
+  overflow-x:hidden;
 }
-body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  z-index: -1;
-  background: url('background-ocean.jpg') center center / cover no-repeat;
-  background-attachment: fixed;
-  filter: brightness(0.9) contrast(1.05);
+body::before{
+  content:"";position:fixed;top:0;left:0;width:100%;height:100%;
+  background:url('background-ocean.jpg') center/cover no-repeat;
+  background-attachment:fixed;
+  filter:brightness(0.9) contrast(1.05);
+  z-index:-2;
 }
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.25), rgba(0,0,0,0.6));
-  z-index: -1;
+body::after{
+  content:"";position:fixed;inset:0;
+  background:linear-gradient(to bottom,rgba(0,0,0,.6),rgba(0,0,0,.3),rgba(0,0,0,.7));
+  z-index:-1;
 }
-@media (max-width:1024px){
-  body::before{
-    position:absolute;
-    background-attachment:scroll !important;
-    background-position:center top !important;
-    background-size:cover !important;
-  }
+@media(max-width:1024px){
+  body::before{position:absolute;background-attachment:scroll!important;}
   body::after{position:absolute;}
 }
 
 .wrap{position:relative;z-index:2;width:100%;max-width:1000px;padding:40px 18px 72px}
 
 /* Header */
-.brand{font-weight:800;color:var(--accent2);letter-spacing:.4px;font-size:13px;text-transform:uppercase;opacity:.9}
-h1{font-family:Georgia,serif;font-size:clamp(26px,4vw,44px);margin:10px 0;text-shadow:0 2px 14px rgba(0,0,0,.6)}
-.sub{color:#dbeeff;opacity:.95;font-size:clamp(15px,2vw,18px);margin-bottom:14px}
+.brand{font-weight:800;color:var(--accent2);letter-spacing:.4px;font-size:13px;text-transform:uppercase;opacity:.95}
+h1{font-family:Georgia,serif;font-size:clamp(26px,4vw,44px);margin:10px 0;color:var(--text-strong);text-shadow:0 2px 14px rgba(0,0,0,.6)}
+.sub{color:var(--text);opacity:.95;font-size:clamp(15px,2vw,18px);margin-bottom:14px}
 .byline{font-size:13px;opacity:.9;margin-bottom:20px}
-.context{font-size:17px;margin-bottom:20px}
+.context{font-size:17px;margin-bottom:20px;color:var(--text-strong)}
 
 /* Cards grid */
 .cards{display:grid;grid-template-columns:1fr;gap:20px;max-width:900px;margin:0 auto}
@@ -103,8 +93,8 @@ h1{font-family:Georgia,serif;font-size:clamp(26px,4vw,44px);margin:10px 0;text-s
 @media(min-width:860px){.inner{padding:26px 24px}}
 
 .eyebrow{font-size:12px;font-weight:800;text-transform:uppercase;color:var(--accent2);opacity:.95;margin-bottom:6px}
-.title{font-weight:900;font-size:22px;margin:0 0 8px}
-.desc{font-size:15px;color:#eaf6ff;opacity:.95;margin:0 0 14px}
+.title{font-weight:900;font-size:22px;margin:0 0 8px;color:var(--text-strong)}
+.desc{font-size:15px;color:var(--text);opacity:.95;margin:0 0 14px}
 .btn{display:inline-block;padding:12px 18px;border-radius:12px;font-weight:800;text-decoration:none;color:#00121a;box-shadow:0 6px 20px rgba(0,0,0,.25);transition:.2s}
 .btn:hover{transform:translateY(-1px)}
 .btn--50{background:linear-gradient(180deg,#6ee8f9,#24b9e6)}
@@ -117,28 +107,36 @@ h1{font-family:Georgia,serif;font-size:clamp(26px,4vw,44px);margin:10px 0;text-s
 
 /* Language switcher */
 .lang{
-  position:fixed;top:16px;right:16px;background:rgba(0,0,0,.55);
-  border-radius:10px;padding:6px 10px;font-weight:700;
-  box-shadow:var(--shadow);user-select:none;cursor:pointer;
+  position:absolute;top:10px;right:10px;
+  background:rgba(0,0,20,.7);
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:12px;
+  padding:6px 10px;
+  z-index:10;
 }
 .lang select{
-  background:transparent;border:none;color:var(--accent2);
-  font-weight:600;font-size:14px;outline:none;cursor:pointer;
+  background:transparent;
+  border:none;
+  color:#fff;
+  font-weight:600;
+  font-size:14px;
+  outline:none;
+  cursor:pointer;
 }
+.lang select option{color:#000}
 </style>
 </head>
 <body>
-
-<div class="lang">
-  🌐 <select id="langSelect">
-    <option value="ru">RU</option>
-    <option value="en">EN</option>
-    <option value="de">DE</option>
-    <option value="fr">FR</option>
-  </select>
-</div>
-
 <main class="wrap">
+  <div class="lang">🌐
+    <select id="langSelect">
+      <option value="ru">RU</option>
+      <option value="en">EN</option>
+      <option value="de">DE</option>
+      <option value="fr">FR</option>
+    </select>
+  </div>
+
   <div class="brand">iScuba.online</div>
   <h1 data-lang="title">Сообщества для тех, кто любит море</h1>
   <p class="sub" data-lang="subtitle">Открытые Facebook-группы для общения, опыта и путешествий.</p>
@@ -147,7 +145,7 @@ h1{font-family:Georgia,serif;font-size:clamp(26px,4vw,44px);margin:10px 0;text-s
 
   <section class="cards">
     <article class="card">
-      <div class="media media--50" aria-hidden="true"></div>
+      <div class="media media--50"></div>
       <div class="inner">
         <div class="eyebrow" data-lang="adult">Зрелый дайвинг 50+</div>
         <h2 class="title" data-lang="diveTitle">Dive 50Plus — ныряем по-взрослому</h2>
@@ -158,7 +156,7 @@ h1{font-family:Georgia,serif;font-size:clamp(26px,4vw,44px);margin:10px 0;text-s
     </article>
 
     <article class="card">
-      <div class="media media--kids" aria-hidden="true"></div>
+      <div class="media media--kids"></div>
       <div class="inner">
         <div class="eyebrow" data-lang="kids">Дети и море</div>
         <h2 class="title" data-lang="kidsTitle">iScuba Kids — первые вдохи под водой</h2>
@@ -175,103 +173,54 @@ h1{font-family:Georgia,serif;font-size:clamp(26px,4vw,44px);margin:10px 0;text-s
 </main>
 
 <script>
-// Multilanguage dictionary
-const dict = {
-  ru: {
-    title:"Сообщества для тех, кто любит море",
-    subtitle:"Открытые Facebook-группы для общения, опыта и путешествий.",
-    choose:"🌊 Выберите сообщество, которое ближе вам:",
-    adult:"Зрелый дайвинг 50+",
-    diveTitle:"Dive 50Plus — ныряем по-взрослому",
-    diveDesc:"Осознанные погружения, комфорт и маршруты, которые хочется повторять.",
-    join50:"Присоединиться к Dive 50Plus",
-    diveHint:"PDF-чек-лист в закрепе после вступления.",
-    kids:"Дети и море",
-    kidsTitle:"iScuba Kids — первые вдохи под водой",
-    kidsDesc:"Безопасный старт, уверенность и семейные приключения у воды.",
-    joinKids:"Присоединиться к iScuba Kids",
-    kidsHint:"Советы и активности для родителей.",
-    fomo:"Участники делятся опытом и планируют сафари каждую неделю — присоединяйтесь!",
-    pdf:"📘 Чек-лист «7 неочевидных правил дайвера 50+» — в группе Dive 50Plus.",
-    footer:"Океан объединяет поколения 🌊"
-  },
-  en: {
-    title:"Communities for those who love the sea",
-    subtitle:"Open Facebook groups for sharing experience, travel and diving.",
-    choose:"🌊 Choose the community that fits you best:",
-    adult:"Mature Diving 50+",
-    diveTitle:"Dive 50Plus — diving like a pro",
-    diveDesc:"Mindful dives, comfort and routes you’ll want to repeat.",
-    join50:"Join Dive 50Plus",
-    diveHint:"PDF checklist in pinned post after joining.",
-    kids:"Kids and the Sea",
-    kidsTitle:"iScuba Kids — first breaths underwater",
-    kidsDesc:"Safe start, confidence and family fun near the water.",
-    joinKids:"Join iScuba Kids",
-    kidsHint:"Tips and activities for parents.",
-    fomo:"Members share experience and plan safaris weekly — join us!",
-    pdf:"📘 Checklist '7 Hidden Rules for Divers 50+' — inside Dive 50Plus group.",
-    footer:"The ocean unites generations 🌊"
-  },
-  de: {
-    title:"Gemeinschaften für alle, die das Meer lieben",
-    subtitle:"Offene Facebook-Gruppen für Austausch, Erfahrung und Reisen.",
-    choose:"🌊 Wähle die Community, die zu dir passt:",
-    adult:"Erwachsenen-Tauchen 50+",
-    diveTitle:"Dive 50Plus — Tauchen für Erfahrene",
-    diveDesc:"Bewusstes Tauchen, Komfort und Routen, die man wiederholen möchte.",
-    join50:"Tritt Dive 50Plus bei",
-    diveHint:"PDF-Checkliste nach dem Beitritt im angehefteten Beitrag.",
-    kids:"Kinder und Meer",
-    kidsTitle:"iScuba Kids — erste Atemzüge unter Wasser",
-    kidsDesc:"Sicherer Start, Selbstvertrauen und Familienabenteuer am Wasser.",
-    joinKids:"Tritt iScuba Kids bei",
-    kidsHint:"Tipps und Aktivitäten für Eltern.",
-    fomo:"Mitglieder teilen Erfahrungen und planen wöchentliche Safaris — mach mit!",
-    pdf:"📘 Checkliste '7 verborgene Regeln für Taucher 50+' — in der Gruppe Dive 50Plus.",
-    footer:"Der Ozean verbindet Generationen 🌊"
-  },
-  fr: {
-    title:"Communautés pour ceux qui aiment la mer",
-    subtitle:"Groupes Facebook ouverts pour échanger, voyager et plonger.",
-    choose:"🌊 Choisissez la communauté qui vous correspond :",
-    adult:"Plongée adulte 50+",
-    diveTitle:"Dive 50Plus — plonger en toute conscience",
-    diveDesc:"Plongées réfléchies, confort et itinéraires à revivre.",
-    join50:"Rejoindre Dive 50Plus",
-    diveHint:"Liste PDF dans le post épinglé après l’adhésion.",
-    kids:"Enfants et mer",
-    kidsTitle:"iScuba Kids — premières respirations sous l’eau",
-    kidsDesc:"Début sûr, confiance et aventures familiales au bord de l’eau.",
-    joinKids:"Rejoindre iScuba Kids",
-    kidsHint:"Conseils et activités pour les parents.",
-    fomo:"Les membres partagent leur expérience et planifient des safaris chaque semaine — rejoignez-nous !",
-    pdf:"📘 Liste « 7 règles cachées du plongeur 50+ » — dans le groupe Dive 50Plus.",
-    footer:"L’océan unit les générations 🌊"
-  }
+const dict={
+ru:{title:"Сообщества для тех, кто любит море",subtitle:"Открытые Facebook-группы для общения, опыта и путешествий.",
+choose:"🌊 Выберите сообщество, которое ближе вам:",adult:"Зрелый дайвинг 50+",diveTitle:"Dive 50Plus — ныряем по-взрослому",
+diveDesc:"Осознанные погружения, комфорт и маршруты, которые хочется повторять.",join50:"Присоединиться к Dive 50Plus",
+diveHint:"PDF-чек-лист в закрепе после вступления.",kids:"Дети и море",kidsTitle:"iScuba Kids — первые вдохи под водой",
+kidsDesc:"Безопасный старт, уверенность и семейные приключения у воды.",joinKids:"Присоединиться к iScuba Kids",
+kidsHint:"Советы и активности для родителей.",fomo:"Участники делятся опытом и планируют сафари каждую неделю — присоединяйтесь!",
+pdf:"📘 Чек-лист «7 неочевидных правил дайвера 50+» — в группе Dive 50Plus.",footer:"Океан объединяет поколения 🌊"},
+en:{title:"Communities for those who love the sea",subtitle:"Open Facebook groups for sharing experience, travel and diving.",
+choose:"🌊 Choose the community that fits you best:",adult:"Mature Diving 50+",diveTitle:"Dive 50Plus — diving like a pro",
+diveDesc:"Mindful dives, comfort and routes you’ll want to repeat.",join50:"Join Dive 50Plus",
+diveHint:"PDF checklist in pinned post after joining.",kids:"Kids and the Sea",kidsTitle:"iScuba Kids — first breaths underwater",
+kidsDesc:"Safe start, confidence and family fun near the water.",joinKids:"Join iScuba Kids",
+kidsHint:"Tips and activities for parents.",fomo:"Members share experience and plan safaris weekly — join us!",
+pdf:"📘 Checklist '7 Hidden Rules for Divers 50+' — inside Dive 50Plus group.",footer:"The ocean unites generations 🌊"},
+de:{title:"Gemeinschaften für alle, die das Meer lieben",subtitle:"Offene Facebook-Gruppen für Austausch, Erfahrung und Reisen.",
+choose:"🌊 Wähle die Community, die zu dir passt:",adult:"Erwachsenen-Tauchen 50+",diveTitle:"Dive 50Plus — Tauchen für Erfahrene",
+diveDesc:"Bewusstes Tauchen, Komfort und Routen, die man wiederholen möchte.",join50:"Tritt Dive 50Plus bei",
+diveHint:"PDF-Checkliste nach dem Beitritt im angehefteten Beitrag.",kids:"Kinder und Meer",
+kidsTitle:"iScuba Kids — erste Atemzüge unter Wasser",
+kidsDesc:"Sicherer Start, Selbstvertrauen und Familienabenteuer am Wasser.",joinKids:"Tritt iScuba Kids bei",
+kidsHint:"Tipps und Aktivitäten für Eltern.",fomo:"Mitglieder teilen Erfahrungen und planen wöchentliche Safaris — mach mit!",
+pdf:"📘 Checkliste '7 verborgene Regeln für Taucher 50+' — in der Gruppe Dive 50Plus.",footer:"Der Ozean verbindet Generationen 🌊"},
+fr:{title:"Communautés pour ceux qui aiment la mer",subtitle:"Groupes Facebook ouverts pour échanger, voyager et plonger.",
+choose:"🌊 Choisissez la communauté qui vous correspond :",adult:"Plongée adulte 50+",diveTitle:"Dive 50Plus — plonger en toute conscience",
+diveDesc:"Plongées réfléchies, confort et itinéraires à revivre.",join50:"Rejoindre Dive 50Plus",
+diveHint:"Liste PDF dans le post épinglé après l’adhésion.",kids:"Enfants et mer",
+kidsTitle:"iScuba Kids — premières respirations sous l’eau",
+kidsDesc:"Début sûr, confiance et aventures familiales au bord de l’eau.",joinKids:"Rejoindre iScuba Kids",
+kidsHint:"Conseils et activités pour les parents.",fomo:"Les membres partagent leur expérience et planifient des safaris chaque semaine — rejoignez-nous !",
+pdf:"📘 Liste « 7 règles cachées du plongeur 50+ » — dans le groupe Dive 50Plus.",footer:"L’océan unit les générations 🌊"}
 };
 
-// Change language dynamically
-const langSelect=document.getElementById("langSelect");
-function setLang(lang){
-  const texts=document.querySelectorAll("[data-lang]");
-  texts.forEach(el=>{
-    const key=el.getAttribute("data-lang");
-    if(dict[lang] && dict[lang][key]) el.textContent=dict[lang][key];
+const sel=document.getElementById("langSelect");
+function setLang(l){
+  document.documentElement.lang=l;
+  sel.value=l;
+  localStorage.setItem("lang",l);
+  document.querySelectorAll("[data-lang]").forEach(el=>{
+    const k=el.dataset.lang;
+    if(dict[l]&&dict[l][k]) el.textContent=dict[l][k];
   });
-  document.documentElement.lang=lang;
-  langSelect.value=lang;
-  localStorage.setItem("lang",lang);
 }
-
-// Auto-detect
-const browserLang=(navigator.language || navigator.userLanguage || "en").substring(0,2);
-const savedLang=localStorage.getItem("lang");
-const defaultLang=["ru","en","de","fr"].includes(browserLang)?browserLang:"en";
-setLang(savedLang || defaultLang);
-
-// Manual switch
-langSelect.addEventListener("change",e=>setLang(e.target.value));
+const saved=localStorage.getItem("lang");
+const nav=(navigator.language||"en").substring(0,2);
+const lang=["ru","en","de","fr"].includes(saved)?saved:(["ru","en","de","fr"].includes(nav)?nav:"en");
+setLang(lang);
+sel.addEventListener("change",e=>setLang(e.target.value));
 </script>
 </body>
 </html>
