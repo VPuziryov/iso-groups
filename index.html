@@ -4,15 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Dive Community — iScuba.online</title>
-<meta name="description" content="Dive 50Plus и iScuba Kids — открытые Facebook-сообщества для взрослых и детей, кто любит море и подводный мир.">
-<meta http-equiv="Content-Language" content="ru">
-<meta name="language" content="Russian">
-
-<link rel="alternate" hreflang="en" href="https://groups.iscuba.online/en/" />
-<link rel="alternate" hreflang="de" href="https://groups.iscuba.online/de/" />
-<link rel="alternate" hreflang="fr" href="https://groups.iscuba.online/fr/" />
-<link rel="alternate" hreflang="x-default" href="https://groups.iscuba.online/" />
-
+<meta name="description" content="Dive 50Plus и iScuba Kids — Facebook-группы для взрослых и детей, кто любит море и подводный мир.">
 <style>
 :root{
   --text:#e9f5ff;
@@ -32,18 +24,13 @@ body{
   color:var(--text);
   background-color:#001f2c;
   min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:flex-start;
-  text-align:center;
-  position:relative;
-  overflow-x:hidden;
+  display:flex;justify-content:center;align-items:flex-start;
+  text-align:center;position:relative;overflow-x:hidden;
 }
 body::before{
   content:"";position:fixed;top:0;left:0;width:100%;height:100%;
   background:url('background-ocean.jpg') center/cover no-repeat;
-  background-attachment:fixed;
-  filter:brightness(0.9) contrast(1.05);
+  background-attachment:fixed;filter:brightness(0.9) contrast(1.05);
   z-index:-2;
 }
 body::after{
@@ -55,7 +42,6 @@ body::after{
   body::before{position:absolute;background-attachment:scroll!important;}
   body::after{position:absolute;}
 }
-
 .wrap{position:relative;z-index:2;width:100%;max-width:1000px;padding:40px 18px 72px}
 
 /* Header */
@@ -85,7 +71,7 @@ h1{font-family:Georgia,serif;font-size:clamp(26px,4vw,44px);margin:10px 0;color:
 }
 .media{position:relative;overflow:hidden;background:#01222f;}
 .media::before{content:"";position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(1.05) contrast(1.1) saturate(1.1);}
-.media--50::before{background-image:url('dive50plus-bg.jpg');background-position:center center;}
+.media--50::before{background-image:url('dive50plus-bg.jpg');}
 .media--kids::before{background-image:url('bg-iscubakids-snorkel.jpg');background-position:center top;}
 .media::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 120px rgba(0,0,0,.35);pointer-events:none;}
 
@@ -99,8 +85,8 @@ h1{font-family:Georgia,serif;font-size:clamp(26px,4vw,44px);margin:10px 0;color:
 .btn:hover{transform:translateY(-1px)}
 .btn--50{background:linear-gradient(180deg,#6ee8f9,#24b9e6)}
 .btn--kids{background:linear-gradient(180deg,#9af6c0,#3eea95)}
+.reward{font-size:14px;color:#aaf7ff;margin-top:14px;font-weight:600;line-height:1.4;}
 .hint{display:block;font-size:12px;color:#cfe9f5;margin-top:10px}
-
 .fomo{margin-top:26px;font-size:15px;opacity:.9}
 .pdfnote{margin-top:8px;font-size:14px;opacity:.95}
 .footer{margin-top:10px;font-size:13px;opacity:.9}
@@ -111,17 +97,11 @@ h1{font-family:Georgia,serif;font-size:clamp(26px,4vw,44px);margin:10px 0;color:
   background:rgba(0,0,20,.7);
   border:1px solid rgba(255,255,255,.2);
   border-radius:12px;
-  padding:6px 10px;
-  z-index:10;
+  padding:6px 10px;z-index:10;
 }
 .lang select{
-  background:transparent;
-  border:none;
-  color:#fff;
-  font-weight:600;
-  font-size:14px;
-  outline:none;
-  cursor:pointer;
+  background:transparent;border:none;color:#fff;
+  font-weight:600;font-size:14px;outline:none;cursor:pointer;
 }
 .lang select option{color:#000}
 </style>
@@ -134,6 +114,8 @@ h1{font-family:Georgia,serif;font-size:clamp(26px,4vw,44px);margin:10px 0;color:
       <option value="en">EN</option>
       <option value="de">DE</option>
       <option value="fr">FR</option>
+      <option value="it">IT</option>
+      <option value="lv">LV</option>
     </select>
   </div>
 
@@ -151,7 +133,7 @@ h1{font-family:Georgia,serif;font-size:clamp(26px,4vw,44px);margin:10px 0;color:
         <h2 class="title" data-lang="diveTitle">Dive 50Plus — ныряем по-взрослому</h2>
         <p class="desc" data-lang="diveDesc">Осознанные погружения, комфорт и маршруты, которые хочется повторять.</p>
         <a class="btn btn--50" href="https://www.facebook.com/groups/dive50plus/" target="_blank" rel="noopener" data-lang="join50">Присоединиться к Dive 50Plus</a>
-        <span class="hint" data-lang="diveHint">PDF-чек-лист в закрепе после вступления.</span>
+        <p class="reward" data-lang="reward">🎁 После вступления получите PDF-гайд<br>«7 неочевидных правил дайвера 50+»</p>
       </div>
     </article>
 
@@ -168,7 +150,7 @@ h1{font-family:Georgia,serif;font-size:clamp(26px,4vw,44px);margin:10px 0;color:
   </section>
 
   <p class="fomo" data-lang="fomo">Участники делятся опытом и планируют сафари каждую неделю — присоединяйтесь!</p>
-  <p class="pdfnote" data-lang="pdf">📘 Чек-лист «7 неочевидных правил дайвера 50+» — в группе Dive 50Plus.</p>
+  <p class="pdfnote" data-lang="pdf">📘 PDF появится в закреплённом посте сразу после вступления в Dive 50Plus.</p>
   <div class="footer" data-lang="footer">Океан объединяет поколения 🌊</div>
 </main>
 
@@ -177,50 +159,43 @@ const dict={
 ru:{title:"Сообщества для тех, кто любит море",subtitle:"Открытые Facebook-группы для общения, опыта и путешествий.",
 choose:"🌊 Выберите сообщество, которое ближе вам:",adult:"Зрелый дайвинг 50+",diveTitle:"Dive 50Plus — ныряем по-взрослому",
 diveDesc:"Осознанные погружения, комфорт и маршруты, которые хочется повторять.",join50:"Присоединиться к Dive 50Plus",
-diveHint:"PDF-чек-лист в закрепе после вступления.",kids:"Дети и море",kidsTitle:"iScuba Kids — первые вдохи под водой",
+reward:"🎁 После вступления получите PDF-гайд «7 неочевидных правил дайвера 50+».",
+kids:"Дети и море",kidsTitle:"iScuba Kids — первые вдохи под водой",
 kidsDesc:"Безопасный старт, уверенность и семейные приключения у воды.",joinKids:"Присоединиться к iScuba Kids",
 kidsHint:"Советы и активности для родителей.",fomo:"Участники делятся опытом и планируют сафари каждую неделю — присоединяйтесь!",
-pdf:"📘 Чек-лист «7 неочевидных правил дайвера 50+» — в группе Dive 50Plus.",footer:"Океан объединяет поколения 🌊"},
+pdf:"📘 PDF появится в закреплённом посте сразу после вступления в Dive 50Plus.",footer:"Океан объединяет поколения 🌊"},
+
 en:{title:"Communities for those who love the sea",subtitle:"Open Facebook groups for sharing experience, travel and diving.",
 choose:"🌊 Choose the community that fits you best:",adult:"Mature Diving 50+",diveTitle:"Dive 50Plus — diving like a pro",
 diveDesc:"Mindful dives, comfort and routes you’ll want to repeat.",join50:"Join Dive 50Plus",
-diveHint:"PDF checklist in pinned post after joining.",kids:"Kids and the Sea",kidsTitle:"iScuba Kids — first breaths underwater",
+reward:"🎁 After joining, you'll receive a PDF guide '7 Hidden Rules for Divers 50+'.",
+kids:"Kids and the Sea",kidsTitle:"iScuba Kids — first breaths underwater",
 kidsDesc:"Safe start, confidence and family fun near the water.",joinKids:"Join iScuba Kids",
 kidsHint:"Tips and activities for parents.",fomo:"Members share experience and plan safaris weekly — join us!",
-pdf:"📘 Checklist '7 Hidden Rules for Divers 50+' — inside Dive 50Plus group.",footer:"The ocean unites generations 🌊"},
+pdf:"📘 The PDF will appear in a pinned post right after joining Dive 50Plus.",footer:"The ocean unites generations 🌊"},
+
 de:{title:"Gemeinschaften für alle, die das Meer lieben",subtitle:"Offene Facebook-Gruppen für Austausch, Erfahrung und Reisen.",
 choose:"🌊 Wähle die Community, die zu dir passt:",adult:"Erwachsenen-Tauchen 50+",diveTitle:"Dive 50Plus — Tauchen für Erfahrene",
 diveDesc:"Bewusstes Tauchen, Komfort und Routen, die man wiederholen möchte.",join50:"Tritt Dive 50Plus bei",
-diveHint:"PDF-Checkliste nach dem Beitritt im angehefteten Beitrag.",kids:"Kinder und Meer",
-kidsTitle:"iScuba Kids — erste Atemzüge unter Wasser",
+reward:"🎁 Nach dem Beitritt erhältst du das PDF „7 verborgene Regeln für Taucher 50+“. ",
+kids:"Kinder und Meer",kidsTitle:"iScuba Kids — erste Atemzüge unter Wasser",
 kidsDesc:"Sicherer Start, Selbstvertrauen und Familienabenteuer am Wasser.",joinKids:"Tritt iScuba Kids bei",
 kidsHint:"Tipps und Aktivitäten für Eltern.",fomo:"Mitglieder teilen Erfahrungen und planen wöchentliche Safaris — mach mit!",
-pdf:"📘 Checkliste '7 verborgene Regeln für Taucher 50+' — in der Gruppe Dive 50Plus.",footer:"Der Ozean verbindet Generationen 🌊"},
+pdf:"📘 Das PDF erscheint im angehefteten Beitrag direkt nach dem Beitritt zu Dive 50Plus.",footer:"Der Ozean verbindet Generationen 🌊"},
+
 fr:{title:"Communautés pour ceux qui aiment la mer",subtitle:"Groupes Facebook ouverts pour échanger, voyager et plonger.",
 choose:"🌊 Choisissez la communauté qui vous correspond :",adult:"Plongée adulte 50+",diveTitle:"Dive 50Plus — plonger en toute conscience",
 diveDesc:"Plongées réfléchies, confort et itinéraires à revivre.",join50:"Rejoindre Dive 50Plus",
-diveHint:"Liste PDF dans le post épinglé après l’adhésion.",kids:"Enfants et mer",
-kidsTitle:"iScuba Kids — premières respirations sous l’eau",
+reward:"🎁 Après votre adhésion, recevez le guide PDF « 7 règles cachées du plongeur 50+ ». ",
+kids:"Enfants et mer",kidsTitle:"iScuba Kids — premières respirations sous l’eau",
 kidsDesc:"Début sûr, confiance et aventures familiales au bord de l’eau.",joinKids:"Rejoindre iScuba Kids",
 kidsHint:"Conseils et activités pour les parents.",fomo:"Les membres partagent leur expérience et planifient des safaris chaque semaine — rejoignez-nous !",
-pdf:"📘 Liste « 7 règles cachées du plongeur 50+ » — dans le groupe Dive 50Plus.",footer:"L’océan unit les générations 🌊"}
-};
+pdf:"📘 Le PDF apparaîtra dans le post épinglé juste après votre adhésion à Dive 50Plus.",footer:"L’océan unit les générations 🌊"},
 
-const sel=document.getElementById("langSelect");
-function setLang(l){
-  document.documentElement.lang=l;
-  sel.value=l;
-  localStorage.setItem("lang",l);
-  document.querySelectorAll("[data-lang]").forEach(el=>{
-    const k=el.dataset.lang;
-    if(dict[l]&&dict[l][k]) el.textContent=dict[l][k];
-  });
-}
-const saved=localStorage.getItem("lang");
-const nav=(navigator.language||"en").substring(0,2);
-const lang=["ru","en","de","fr"].includes(saved)?saved:(["ru","en","de","fr"].includes(nav)?nav:"en");
-setLang(lang);
-sel.addEventListener("change",e=>setLang(e.target.value));
-</script>
-</body>
-</html>
+it:{title:"Comunità per chi ama il mare",subtitle:"Gruppi Facebook aperti per condividere esperienze e viaggi subacquei.",
+choose:"🌊 Scegli la community più adatta a te:",adult:"Immersioni mature 50+",diveTitle:"Dive 50Plus — immersioni con esperienza",
+diveDesc:"Immersioni consapevoli, comfort e percorsi da rivivere.",join50:"Unisciti a Dive 50Plus",
+reward:"🎁 Dopo l’iscrizione riceverai la guida PDF '7 regole nascoste del sub 50+'.",
+kids:"Bambini e mare",kidsTitle:"iScuba Kids — i primi respiri sott’acqua",
+kidsDesc:"Inizio sicuro, fiducia e avventure in famiglia vicino all’acqua.",joinKids:"Unisciti a iScuba Kids",
+kidsHint:"Consigli e attività per i genitori.",fomo:"I membri condivid
