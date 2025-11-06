@@ -22,8 +22,7 @@ html,body{height:100%}
 body {
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
   color: var(--text);
-  background: url('background-ocean.jpg') center center / cover no-repeat;
-  background-attachment: fixed;
+  background-color: #001f2c; /* fallback для серого фона */
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -33,10 +32,24 @@ body {
   overflow-x: hidden;
 }
 
-/* Overlay gradient layer */
+/* Отдельный контейнер для фона — кроссбраузерно */
 body::before {
   content: "";
-  position: absolute;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: url('background-ocean.jpg') center center / cover no-repeat;
+  background-attachment: fixed;
+  filter: brightness(0.9) contrast(1.05);
+}
+
+/* Градиент сверху — поверх картинки */
+body::after {
+  content: "";
+  position: fixed;
   inset: 0;
   background: linear-gradient(
     to bottom,
@@ -44,8 +57,22 @@ body::before {
     rgba(0, 0, 0, 0.25),
     rgba(0, 0, 0, 0.6)
   );
-  z-index: 0;
+  z-index: -1;
 }
+
+/* Исправление для мобильных Safari и Chrome */
+@media (max-width: 1024px) {
+  body::before {
+    position: absolute;
+    background-attachment: scroll !important;
+    background-position: center top !important;
+    background-size: cover !important;
+  }
+  body::after {
+    position: absolute;
+  }
+}
+
 
 /* Mobile fix — prevents background from "sliding" or cutting off */
 @media (max-width: 1024px) {
