@@ -23,12 +23,14 @@ body{
   color:var(--text);
   background:
     linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.45) 40%, rgba(0,0,0,0.6) 100%),
-    url('background-ocean.jpg') center center / cover no-repeat fixed;
+    url('background-caustics.jpg') center center / cover no-repeat fixed;
   text-align:center;
   min-height:100vh;
   overflow-x:hidden;
   overflow-y:auto;
   display:flex;justify-content:center;
+  filter: brightness(90%) contrast(95%);
+  background-color:#001f2c;
 }
 
 /* === LAYOUT === */
@@ -99,6 +101,14 @@ h1{font-family:Georgia,serif;font-size:clamp(26px,4.2vw,44px);margin:6px 0 8px;t
 .fomo{font-size:14px;margin:18px 0 10px;color:#e8f6ff;opacity:.95;}
 .pdfnote{font-size:14px;color:#e8f6ff;opacity:.95;margin-bottom:8px;}
 .foot{font-size:13px;color:#cfe9f5;opacity:.9;}
+
+/* === Mobile optimization fix === */
+@media (max-width: 1024px) {
+  body {
+    background-attachment: scroll !important;
+    background-position: center top;
+  }
+}
 </style>
 </head>
 <body>
