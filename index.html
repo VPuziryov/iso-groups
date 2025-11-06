@@ -4,196 +4,149 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Dive Community — Dive 50Plus & iScuba Kids</title>
-<meta name="description" content="Открытые Facebook-группы для дайверов 50+ и родителей, которые хотят приобщить детей к морю. Присоединяйтесь к Dive 50Plus и iScuba Kids.">
+<meta name="description" content="Открытые Facebook-группы для дайверов 50+ и родителей. Присоединяйтесь к Dive 50Plus и iScuba Kids.">
 
 <style>
-:root {
-  --accent: #00d1ff;
-  --accent2: #7ff1ff;
-  --accent3: #7fffba;
-  --text: #eaf8ff;
-  --overlay: rgba(0,0,0,0.3);
-  --shadow: 0 10px 30px rgba(0,0,0,0.35);
-  --radius: 18px;
+:root{
+  --text:#eaf8ff;
+  --accent:#00d1ff;
+  --accent2:#7ff1ff;
+  --accent3:#52f2a5;
+  --shadow:0 10px 28px rgba(0,0,0,.35);
+  --radius:18px;
 }
 
-/* === BASE === */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { height: 100%; }
-body {
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
-  color: var(--text);
-  background: url('background-ocean.jpg') center / cover no-repeat fixed;
-  text-align: center;
-  min-height: 100vh;
-  display: flex; justify-content: center; align-items: center;
-  overflow-x: hidden;
-  position: relative;
+/* Base */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  color:var(--text);
+  background:url('background-ocean.jpg') center/cover no-repeat fixed;
+  min-height:100vh; display:flex; justify-content:center; align-items:flex-start;
+  text-align:center; position:relative; overflow-x:hidden;
 }
-body::before {
-  content: "";
-  position: absolute; inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.25), rgba(0,0,0,0.55));
-  z-index: 0;
+body::before{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.25), rgba(0,0,0,.6));
+  z-index:0;
 }
-@media (max-width: 1024px) {
-  body {
-    background-attachment: scroll !important;
-    background-position: center top !important;
+@media (max-width:1024px){
+  body{ background-attachment:scroll !important; background-position:center top !important; }
+}
+
+.wrap{position:relative; z-index:2; width:100%; max-width:1000px; padding:40px 18px 72px}
+
+/* Header */
+.brand{font-weight:800; color:var(--accent2); letter-spacing:.4px; font-size:13px; text-transform:uppercase; opacity:.9}
+h1{font-family:Georgia,serif; font-size:clamp(26px,4vw,44px); margin:10px 0; text-shadow:0 2px 14px rgba(0,0,0,.6)}
+.sub{color:#dbeeff; opacity:.95; font-size:clamp(15px,2vw,18px); margin-bottom:14px}
+.byline{font-size:13px; opacity:.9; margin-bottom:20px}
+.context{font-size:17px; margin-bottom:20px}
+
+/* Cards grid */
+.cards{display:grid; grid-template-columns:1fr; gap:20px; max-width:900px; margin:0 auto}
+@media (min-width:860px){ .cards{grid-template-columns:1fr 1fr} }
+
+/* Card (split layout: media + content) */
+.card{
+  display:grid;
+  grid-template-rows:180px auto;          /* mobile: фото сверху */
+  border-radius:var(--radius);
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:var(--shadow);
+  background:rgba(0,0,0,.45);
+  text-align:left;
+}
+@media (min-width:860px){
+  .card{
+    grid-template-columns:42% 58%;        /* desktop: фото слева, текст справа */
+    grid-template-rows:auto;
+    min-height:320px;
   }
 }
 
-/* === LAYOUT === */
-.wrap {
-  position: relative; z-index: 2;
-  width: 100%; max-width: 1000px;
-  padding: 40px 20px 80px;
+/* Media block (явное фото) */
+.media{
+  position:relative; overflow:hidden;
+  background:#01222f;
+}
+.media::before{
+  content:""; position:absolute; inset:0;
+  background-size:cover; background-position:center;
+  filter:brightness(1.05) contrast(1.1) saturate(1.1);
+  transform:scale(1.02);
+}
+.media--50::before{ background-image:url('dive50plus-bg.jpg'); background-position:center top; }
+.media--kids::before{ background-image:url('bg-iscubakids-snorkel.jpg'); background-position:center 35%; }
+
+.media::after{ /* лёгкая виньетка по углам — подчёркивает фото */
+  content:""; position:absolute; inset:0;
+  box-shadow:inset 0 0 120px rgba(0,0,0,.35);
+  pointer-events:none;
 }
 
-/* === HEADER === */
-.brand {
-  font-weight: 800;
-  color: var(--accent2);
-  letter-spacing: .4px;
-  font-size: 13px;
-  text-transform: uppercase;
-  opacity: .9;
-}
-h1 {
-  font-size: clamp(26px, 4vw, 44px);
-  font-family: Georgia, serif;
-  text-shadow: 0 2px 14px rgba(0,0,0,0.6);
-  margin: 10px 0;
-}
-.sub {
-  color: #dbeeff; opacity: .95;
-  font-size: clamp(15px, 2vw, 18px);
-  margin-bottom: 16px;
-}
-.byline { font-size: 13px; opacity: .9; margin-bottom: 22px; }
-.context { font-size: 17px; margin-bottom: 20px; }
+/* Content block */
+.inner{padding:22px}
+@media (min-width:860px){ .inner{padding:26px 24px} }
 
-/* === CARDS === */
-.cards {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 22px;
-  margin: auto;
-  max-width: 880px;
-}
-@media (min-width: 860px) {
-  .cards { grid-template-columns: 1fr 1fr; }
-}
-.card {
-  position: relative;
-  overflow: hidden;
-  border-radius: var(--radius);
-  border: 1px solid rgba(255,255,255,0.12);
-  box-shadow: var(--shadow);
-  text-align: left;
-  color: #fff;
-  min-height: 340px;
-}
-.card::before {
-  content: "";
-  position: absolute; inset: 0;
-  background-size: cover;
-  background-position: center;
-  filter: brightness(1.05) contrast(1.1) saturate(1.15);
-  transition: transform 0.8s ease;
-}
-.card:nth-child(1)::before { background-image: url('dive50plus-bg.jpg'); }
-.card:nth-child(2)::before { background-image: url('bg-iscubakids-snorkel.jpg'); }
-.card:hover::before { transform: scale(1.05); }
+.eyebrow{font-size:12px; font-weight:800; text-transform:uppercase; color:var(--accent2); opacity:.95; margin-bottom:6px}
+.title{font-weight:900; font-size:22px; margin:0 0 8px}
+.desc{font-size:15px; color:#eaf6ff; opacity:.95; margin:0 0 14px}
 
-.card .overlay {
-  position: absolute; inset: 0;
-  background: var(--overlay);
-  box-shadow: inset 0 0 40px rgba(255,255,255,0.08);
-  backdrop-filter: blur(3px);
+.btn{
+  display:inline-block; padding:12px 18px; border-radius:12px;
+  font-weight:800; text-decoration:none; color:#00121a;
+  box-shadow:0 6px 20px rgba(0,0,0,.25); transition:.2s
 }
-.inner {
-  position: relative;
-  padding: 26px;
-  z-index: 2;
-}
-.eyebrow {
-  font-size: 12px;
-  font-weight: 800;
-  text-transform: uppercase;
-  color: var(--accent2);
-  opacity: .9;
-  margin-bottom: 6px;
-}
-.title { font-weight: 900; font-size: 22px; margin: 0 0 8px; }
-.desc { font-size: 15px; color: #eaf6ff; margin-bottom: 16px; opacity: .95; }
-.btn {
-  display: inline-block;
-  padding: 12px 18px;
-  border-radius: 12px;
-  font-weight: 800;
-  text-decoration: none;
-  color: #00121a;
-  box-shadow: 0 6px 20px rgba(0,0,0,.25);
-  transition: .2s;
-}
-.btn--50 { background: linear-gradient(180deg,#7ff1ff,#2fd3ff); }
-.btn--kids { background: linear-gradient(180deg,#b6ffcc,#52f2a5); }
-.btn:hover { transform: translateY(-1px); }
-.hint { display: block; font-size: 12px; color: #cfe9f5; margin-top: 10px; }
+.btn:hover{ transform:translateY(-1px) }
+.btn--50{ background:linear-gradient(180deg,#6ee8f9,#24b9e6) }
+.btn--kids{ background:linear-gradient(180deg,#9af6c0,#3eea95) }
 
-/* === FOOTER === */
-.fomo { margin-top: 30px; font-size: 15px; opacity: .9; }
-.pdfnote { margin-top: 8px; font-size: 14px; opacity: .95; }
-.footer { margin-top: 10px; font-size: 13px; opacity: .9; }
+.hint{display:block; font-size:12px; color:#cfe9f5; margin-top:10px}
 
-/* === LANG === */
-.lang {
-  position: fixed;
-  top: 16px; right: 16px;
-  background: rgba(0,0,0,.55);
-  border-radius: 10px;
-  padding: 8px 12px;
-  font-weight: 700;
-  box-shadow: var(--shadow);
-  cursor: pointer;
-  user-select: none;
-  transition: background .2s;
-}
-.lang:hover { background: rgba(0,0,0,.7); }
+/* Footer texts */
+.fomo{margin-top:26px; font-size:15px; opacity:.9}
+.pdfnote{margin-top:8px; font-size:14px; opacity:.95}
+.footer{margin-top:10px; font-size:13px; opacity:.9}
+
+/* Lang pill (оставляем как индикатор) */
+.lang{position:fixed; top:16px; right:16px; background:rgba(0,0,0,.55); border-radius:10px; padding:8px 12px; font-weight:700; box-shadow:var(--shadow); user-select:none}
 </style>
 </head>
 <body>
 
-<!-- === Language Button === -->
-<div class="lang" id="langToggle">🌐 <span id="currentLang">RU</span></div>
+<div class="lang">🌐 RU</div>
 
 <main class="wrap">
-  <div class="brand" id="brand">iScuba.online</div>
-  <h1 id="title">Сообщества для тех, кто любит море</h1>
-  <p class="sub" id="subtitle">Открытые Facebook-группы для общения, опыта и путешествий.</p>
+  <div class="brand">iScuba.online</div>
+  <h1>Сообщества для тех, кто любит море</h1>
+  <p class="sub">Открытые Facebook-группы для общения, опыта и путешествий.</p>
   <p class="byline">© Виталий Пузырёв, инструктор-тренер SSI</p>
   <p class="context">🌊 Выберите сообщество, которое ближе вам:</p>
 
   <section class="cards">
+    <!-- Dive 50Plus -->
     <article class="card">
-      <div class="overlay"></div>
+      <div class="media media--50" aria-hidden="true"></div>
       <div class="inner">
         <div class="eyebrow">Зрелый дайвинг 50+</div>
         <h2 class="title">Dive 50Plus — ныряем по-взрослому</h2>
         <p class="desc">Осознанные погружения, комфорт и маршруты, которые хочется повторять.</p>
-        <a href="https://www.facebook.com/groups/dive50plus/" class="btn btn--50" target="_blank" rel="noopener">Присоединиться к Dive 50Plus</a>
+        <a class="btn btn--50" href="https://www.facebook.com/groups/dive50plus/" target="_blank" rel="noopener">Присоединиться к Dive 50Plus</a>
         <span class="hint">PDF-чек-лист в закрепе после вступления.</span>
       </div>
     </article>
 
+    <!-- iScuba Kids -->
     <article class="card">
-      <div class="overlay"></div>
+      <div class="media media--kids" aria-hidden="true"></div>
       <div class="inner">
         <div class="eyebrow">Дети и море</div>
         <h2 class="title">iScuba Kids — первые вдохи под водой</h2>
         <p class="desc">Безопасный старт, уверенность и семейные приключения у воды.</p>
-        <a href="https://www.facebook.com/groups/iscubakidsopen/" class="btn btn--kids" target="_blank" rel="noopener">Присоединиться к iScuba Kids</a>
+        <a class="btn btn--kids" href="https://www.facebook.com/groups/iscubakidsopen/" target="_blank" rel="noopener">Присоединиться к iScuba Kids</a>
         <span class="hint">Советы и активности для родителей.</span>
       </div>
     </article>
@@ -204,15 +157,13 @@ h1 {
   <div class="footer">Океан объединяет поколения 🌊</div>
 </main>
 
-<!-- === Meta Pixel === -->
+<!-- Meta Pixel -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;
-s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
-(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','675997335920840');fbq('track','PageView');
+n.callMethod.apply(n,arguments):n.queue.push(arguments)}; if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0'; n.queue=[]; t=b.createElement(e);t.async=!0;t.src=v;
+s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','675997335920840'); fbq('track','PageView');
 setTimeout(()=>fbq('trackCustom','ViewContent_groups_7s'),7000);
 </script>
 </body>
