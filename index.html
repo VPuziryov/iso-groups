@@ -78,8 +78,17 @@ h1{font-family:Georgia,serif; font-size:clamp(26px,4vw,44px); margin:10px 0; tex
   filter:brightness(1.05) contrast(1.1) saturate(1.1);
   transform:scale(1.02);
 }
-.media--50::before{ background-image:url('dive50plus-bg.jpg'); background-position:center top; }
-.media--kids::before{ background-image:url('bg-iscubakids-snorkel.jpg'); background-position:center 35%; }
+.media--50::before {
+  background-image: url('dive50plus-pro.jpg');
+  background-position: center 30%;
+  background-size: cover;
+  filter: brightness(1.05) contrast(1.15) saturate(1.05);
+}
+.media--50::before {
+  background-image: url('dive50plus-new.jpg');
+  background-position: center 40%;
+  background-size: cover;
+}
 
 .media::after{ /* лёгкая виньетка по углам — подчёркивает фото */
   content:""; position:absolute; inset:0;
