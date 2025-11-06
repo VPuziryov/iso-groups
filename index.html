@@ -11,7 +11,6 @@
   --text-strong:#ffffff;
   --accent:#00c9ff;
   --accent2:#7eeaff;
-  --accent3:#4fe5a0;
   --shadow:0 10px 28px rgba(0,0,0,.35);
   --radius:18px;
 }
@@ -118,7 +117,7 @@ h1{font-family:Georgia,serif;font-size:clamp(26px,4vw,44px);margin:10px 0;color:
   <div class="brand">iScuba.online</div>
   <h1 data-lang="title">Сообщества для тех, кто любит море</h1>
   <p class="sub" data-lang="subtitle">Открытые Facebook-группы для общения, опыта и путешествий.</p>
-  <p class="byline">© Виталий Пузырёв, инструктор-тренер SSI</p>
+  <p class="byline" data-lang="byline">© Виталий Пузырёв, инструктор-тренер SSI</p>
   <p class="context" data-lang="choose">🌊 Выберите сообщество, которое ближе вам:</p>
 
   <section class="cards">
@@ -129,7 +128,7 @@ h1{font-family:Georgia,serif;font-size:clamp(26px,4vw,44px);margin:10px 0;color:
         <h2 class="title" data-lang="diveTitle">Dive 50Plus — ныряем по-взрослому</h2>
         <p class="desc" data-lang="diveDesc">Осознанные погружения, комфорт и маршруты, которые хочется повторять.</p>
         <a class="btn btn--50" id="group50" href="https://www.facebook.com/groups/dive50plus/" target="_blank" rel="noopener" data-lang="join50">Присоединиться к Dive 50Plus</a>
-        <p class="reward" data-lang="reward">🎁 После вступления получите PDF-гайд<br>«7 неочевидных правил дайвера 50+»</p>
+        <p class="reward" data-lang="reward">🎁 После вступления получите PDF-гайд «7 неочевидных правил дайвера 50+»</p>
       </div>
     </article>
 
@@ -158,10 +157,134 @@ const bg=document.getElementById('bg');
 window.addEventListener('scroll',()=>{bg.style.transform=`translateY(${window.scrollY*0.2}px)`});
 
 /* === LANGUAGE SYSTEM === */
-const dict={ru:{title:"Сообщества для тех, кто любит море",subtitle:"Открытые Facebook-группы для общения, опыта и путешествий.",choose:"🌊 Выберите сообщество, которое ближе вам:",adult:"Зрелый дайвинг 50+",diveTitle:"Dive 50Plus — ныряем по-взрослому",diveDesc:"Осознанные погружения, комфорт и маршруты, которые хочется повторять.",join50:"Присоединиться к Dive 50Plus",reward:"🎁 После вступления получите PDF-гайд «7 неочевидных правил дайвера 50+».",kids:"Дети и море",kidsTitle:"iScuba Kids — школа под водой и в жизни",kidsDesc:"Без гаджетов и спешки. С доверием, смыслом и настоящими эмоциями. Здесь дети учатся видеть мир, верить в себя и двигаться вперёд.",joinKids:"Присоединиться к iScuba Kids",fomo:"Участники делятся опытом и планируют сафари каждую неделю — присоединяйтесь!",pdf:"📘 PDF появится в закреплённом посте сразу после вступления в Dive 50Plus.",footer:"Океан объединяет поколения 🌊"},en:{title:"Communities for those who love the sea",subtitle:"Open Facebook groups for sharing experience, travel and diving.",choose:"🌊 Choose the community that fits you best:",adult:"Mature Diving 50+",diveTitle:"Dive 50Plus — diving like a pro",diveDesc:"Mindful dives, comfort and routes you’ll want to repeat.",join50:"Join Dive 50Plus",reward:"🎁 After joining, you'll receive a PDF guide ‘7 Hidden Rules for Divers 50+’.",kids:"Kids and the Sea",kidsTitle:"iScuba Kids — a school underwater and in life",kidsDesc:"No gadgets, no rush. With trust, meaning and real emotions. Here, children learn to see the world, believe in themselves and move forward.",joinKids:"Join iScuba Kids",fomo:"Members share experience and plan safaris weekly — join us!",pdf:"📘 The PDF will appear in a pinned post right after joining Dive 50Plus.",footer:"The ocean unites generations 🌊"}};
+const dict={
+  ru:{
+    title:"Сообщества для тех, кто любит море",
+    subtitle:"Открытые Facebook-группы для общения, опыта и путешествий.",
+    byline:"© Виталий Пузырёв, инструктор-тренер SSI",
+    choose:"🌊 Выберите сообщество, которое ближе вам:",
+    adult:"Зрелый дайвинг 50+",
+    diveTitle:"Dive 50Plus — ныряем по-взрослому",
+    diveDesc:"Осознанные погружения, комфорт и маршруты, которые хочется повторять.",
+    join50:"Присоединиться к Dive 50Plus",
+    reward:"🎁 После вступления получите PDF-гайд «7 неочевидных правил дайвера 50+»",
+    kids:"Дети и море",
+    kidsTitle:"iScuba Kids — школа под водой и в жизни",
+    kidsDesc:"Без гаджетов и спешки. С доверием, смыслом и настоящими эмоциями. Здесь дети учатся видеть мир, верить в себя и двигаться вперёд.",
+    joinKids:"Присоединиться к iScuba Kids",
+    fomo:"Участники делятся опытом и планируют сафари каждую неделю — присоединяйтесь!",
+    pdf:"📘 PDF появится в закреплённом посте сразу после вступления в Dive 50Plus.",
+    footer:"Океан объединяет поколения 🌊"
+  },
+  en:{
+    title:"Communities for those who love the sea",
+    subtitle:"Open Facebook groups for sharing experience, travel and diving.",
+    byline:"© Vitaliy Puziryov, SSI Instructor Trainer",
+    choose:"🌊 Choose the community that fits you best:",
+    adult:"Mature Diving 50+",
+    diveTitle:"Dive 50Plus — diving like a pro",
+    diveDesc:"Mindful dives, comfort and routes you’ll want to repeat.",
+    join50:"Join Dive 50Plus",
+    reward:"🎁 After joining, you'll receive the PDF guide ‘7 Hidden Rules for Divers 50+’",
+    kids:"Kids and the Sea",
+    kidsTitle:"iScuba Kids — a school underwater and in life",
+    kidsDesc:"No gadgets, no rush. With trust, meaning and real emotions. Here, children learn to see the world, believe in themselves and move forward.",
+    joinKids:"Join iScuba Kids",
+    fomo:"Members share experience and plan safaris weekly — join us!",
+    pdf:"📘 The PDF will appear in a pinned post right after joining Dive 50Plus.",
+    footer:"The ocean unites generations 🌊"
+  },
+  de:{
+    title:"Gemeinschaften für alle, die das Meer lieben",
+    subtitle:"Offene Facebook-Gruppen für Austausch, Erfahrung und Reisen.",
+    byline:"© Vitaliy Puziryov, SSI Instructor Trainer",
+    choose:"🌊 Wähle die Community, die zu dir passt:",
+    adult:"Erwachsenen-Tauchen 50+",
+    diveTitle:"Dive 50Plus — Tauchen für Erfahrene",
+    diveDesc:"Bewusstes Tauchen, Komfort und Routen, die man wiederholen möchte.",
+    join50:"Tritt Dive 50Plus bei",
+    reward:"🎁 Nach dem Beitritt erhältst du das PDF „7 verborgene Regeln für Taucher 50+“",
+    kids:"Kinder und Meer",
+    kidsTitle:"iScuba Kids — Schule unter Wasser und im Leben",
+    kidsDesc:"Ohne Gadgets und Eile. Mit Vertrauen, Sinn und echten Emotionen. Hier lernen Kinder, die Welt zu sehen, an sich zu glauben und voranzukommen.",
+    joinKids:"Tritt iScuba Kids bei",
+    fomo:"Mitglieder teilen Erfahrungen und planen wöchentliche Safaris — mach mit!",
+    pdf:"📘 Das PDF erscheint im angehefteten Beitrag direkt nach dem Beitritt zu Dive 50Plus.",
+    footer:"Der Ozean verbindet Generationen 🌊"
+  },
+  fr:{
+    title:"Communautés pour ceux qui aiment la mer",
+    subtitle:"Groupes Facebook ouverts pour échanger, voyager et plonger.",
+    byline:"© Vitaliy Puziryov, formateur d’instructeurs SSI",
+    choose:"🌊 Choisissez la communauté qui vous correspond :",
+    adult:"Plongée adulte 50+",
+    diveTitle:"Dive 50Plus — plonger en toute conscience",
+    diveDesc:"Plongées réfléchies, confort et itinéraires à revivre.",
+    join50:"Rejoindre Dive 50Plus",
+    reward:"🎁 Après votre adhésion, recevez le guide PDF « 7 règles cachées du plongeur 50+ »",
+    kids:"Enfants et mer",
+    kidsTitle:"iScuba Kids — une école sous l’eau et dans la vie",
+    kidsDesc:"Sans gadgets ni précipitation. Avec confiance, sens et émotions vraies. Ici, les enfants apprennent à voir le monde, à croire en eux et à avancer.",
+    joinKids:"Rejoindre iScuba Kids",
+    fomo:"Les membres partagent leur expérience et planifient des safaris chaque semaine — rejoignez-nous !",
+    pdf:"📘 Le PDF apparaîtra dans le post épinglé juste après votre adhésion à Dive 50Plus.",
+    footer:"L’océan unit les générations 🌊"
+  },
+  it:{
+    title:"Comunità per chi ama il mare",
+    subtitle:"Gruppi Facebook aperti per condividere esperienze e viaggi subacquei.",
+    byline:"© Vitaliy Puziryov, Formatore Istruttori SSI",
+    choose:"🌊 Scegli la community più adatta a te:",
+    adult:"Immersioni mature 50+",
+    diveTitle:"Dive 50Plus — immersioni con esperienza",
+    diveDesc:"Immersioni consapevoli, comfort e percorsi da rivivere.",
+    join50:"Unisciti a Dive 50Plus",
+    reward:"🎁 Dopo l’iscrizione riceverai la guida PDF ‘7 regole nascoste del sub 50+’",
+    kids:"Bambini e mare",
+    kidsTitle:"iScuba Kids — una scuola sott’acqua e nella vita",
+    kidsDesc:"Senza gadget e senza fretta. Con fiducia, significato ed emozioni vere. Qui i bambini imparano a vedere il mondo, a credere in sé stessi e ad andare avanti.",
+    joinKids:"Unisciti a iScuba Kids",
+    fomo:"I membri condividono esperienze e pianificano safari ogni settimana — unisciti a noi!",
+    pdf:"📘 Il PDF apparirà nel post fissato subito dopo l’iscrizione a Dive 50Plus.",
+    footer:"L’oceano unisce le generazioni 🌊"
+  },
+  lv:{
+    title:"Kopienas tiem, kas mīl jūru",
+    subtitle:"Atvērtas Facebook grupas pieredzes apmaiņai un ceļojumiem.",
+    byline:"© Vitālijs Puzirjovs, SSI instruktoru treneris",
+    choose:"🌊 Izvēlies sev piemērotāko kopienu:",
+    adult:"Niršana 50+",
+    diveTitle:"Dive 50Plus — apzināta niršana",
+    diveDesc:"Droša, ērta niršana un maršruti, kurus gribas atkārtot.",
+    join50:"Pievienojies Dive 50Plus",
+    reward:"🎁 Pēc pievienošanās saņem PDF ceļvedi “7 slēptie nirēja 50+ noteikumi”",
+    kids:"Bērni un jūra",
+    kidsTitle:"iScuba Kids — skola zem ūdens un dzīvē",
+    kidsDesc:"Bez ierīcēm un steigas. Ar uzticību, jēgu un patiesām emocijām. Šeit bērni mācās redzēt pasauli, ticēt sev un virzīties uz priekšu.",
+    joinKids:"Pievienojies iScuba Kids",
+    fomo:"Dalībnieki dalās pieredzē un plāno safari katru nedēļu — pievienojies!",
+    pdf:"📘 PDF būs piespraustajā ierakstā uzreiz pēc pievienošanās Dive 50Plus.",
+    footer:"Okeāns vieno paaudzes 🌊"
+  }
+};
+
 const sel=document.getElementById("langSelect");
-function setLang(l){const t={...dict.en,...(dict[l]||{})};document.documentElement.lang=l;sel.value=l;localStorage.setItem("lang",l);document.querySelectorAll("[data-lang]").forEach(el=>{const k=el.dataset.lang;if(t[k])el.textContent=t[k];});}
-const supported=["ru","en"];const saved=localStorage.getItem("lang");const nav=(navigator.language||"en").substring(0,2).toLowerCase();const initial=supported.includes(saved)?saved:(supported.includes(nav)?nav:"en");setLang(initial);sel.addEventListener("change",e=>setLang(e.target.value));
+function setLang(l){
+  const t = {...dict.en, ...(dict[l]||{})}; // безопасный fallback
+  document.documentElement.lang=l;
+  sel.value=l;
+  localStorage.setItem("lang",l);
+  document.querySelectorAll("[data-lang]").forEach(el=>{
+    const k=el.dataset.lang;
+    if(t[k]) el.innerHTML = t[k]; // поддерживаем эмодзи/дефисы/диакритику и переносы
+  });
+}
+const supported=["ru","en","de","fr","it","lv"];
+const saved=localStorage.getItem("lang");
+const nav=(navigator.language||"en").substring(0,2).toLowerCase();
+const initial = supported.includes(saved) ? saved : (supported.includes(nav)?nav:"en");
+setLang(initial);
+sel.addEventListener("change",e=>setLang(e.target.value));
 </script>
 
 <!-- META PIXEL -->
