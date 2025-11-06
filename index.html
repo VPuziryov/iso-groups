@@ -4,26 +4,31 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Dive Community — Dive 50Plus & iScuba Kids</title>
-<meta name="description" content="Открытые Facebook-группы для дайверов 50+ и родителей, которые хотят приобщить детей к морю. Присоединяйтесь!">
+<meta name="description" content="Открытые Facebook-группы для дайверов 50+ и родителей, которые хотят приобщить детей к морю. Присоединяйтесь к Dive 50Plus и iScuba Kids.">
+
 <style>
 :root {
   --accent: #00d1ff;
   --accent2: #7ff1ff;
+  --accent3: #7fffba;
   --text: #eaf8ff;
-  --overlay: rgba(0,0,0,0.45);
+  --overlay: rgba(0,0,0,0.3);
   --shadow: 0 10px 30px rgba(0,0,0,0.35);
   --radius: 18px;
 }
+
+/* === BASE === */
 * { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
 body {
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
   color: var(--text);
   background: url('background-ocean.jpg') center / cover no-repeat fixed;
   text-align: center;
   min-height: 100vh;
-  display: flex; justify-content: center;
-  align-items: center;
+  display: flex; justify-content: center; align-items: center;
   overflow-x: hidden;
+  position: relative;
 }
 body::before {
   content: "";
@@ -31,21 +36,40 @@ body::before {
   background: linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.25), rgba(0,0,0,0.55));
   z-index: 0;
 }
+@media (max-width: 1024px) {
+  body {
+    background-attachment: scroll !important;
+    background-position: center top !important;
+  }
+}
+
+/* === LAYOUT === */
 .wrap {
   position: relative; z-index: 2;
   width: 100%; max-width: 1000px;
   padding: 40px 20px 80px;
 }
 
-/* === HERO === */
-.brand { font-weight: 800; color: var(--accent2); letter-spacing: .4px; font-size: 13px; text-transform: uppercase; opacity: .9; }
+/* === HEADER === */
+.brand {
+  font-weight: 800;
+  color: var(--accent2);
+  letter-spacing: .4px;
+  font-size: 13px;
+  text-transform: uppercase;
+  opacity: .9;
+}
 h1 {
   font-size: clamp(26px, 4vw, 44px);
   font-family: Georgia, serif;
   text-shadow: 0 2px 14px rgba(0,0,0,0.6);
   margin: 10px 0;
 }
-.sub { color: #dbeeff; opacity: .95; font-size: clamp(15px, 2vw, 18px); margin-bottom: 16px; }
+.sub {
+  color: #dbeeff; opacity: .95;
+  font-size: clamp(15px, 2vw, 18px);
+  margin-bottom: 16px;
+}
 .byline { font-size: 13px; opacity: .9; margin-bottom: 22px; }
 .context { font-size: 17px; margin-bottom: 20px; }
 
@@ -53,7 +77,7 @@ h1 {
 .cards {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 20px;
+  gap: 22px;
   margin: auto;
   max-width: 880px;
 }
@@ -64,7 +88,7 @@ h1 {
   position: relative;
   overflow: hidden;
   border-radius: var(--radius);
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.12);
   box-shadow: var(--shadow);
   text-align: left;
   color: #fff;
@@ -75,7 +99,7 @@ h1 {
   position: absolute; inset: 0;
   background-size: cover;
   background-position: center;
-  filter: brightness(0.7) contrast(1.05);
+  filter: brightness(1.05) contrast(1.1) saturate(1.15);
   transition: transform 0.8s ease;
 }
 .card:nth-child(1)::before { background-image: url('dive50plus-bg.jpg'); }
@@ -85,11 +109,12 @@ h1 {
 .card .overlay {
   position: absolute; inset: 0;
   background: var(--overlay);
+  box-shadow: inset 0 0 40px rgba(255,255,255,0.08);
   backdrop-filter: blur(3px);
 }
 .inner {
   position: relative;
-  padding: 24px;
+  padding: 26px;
   z-index: 2;
 }
 .eyebrow {
@@ -117,6 +142,7 @@ h1 {
 .btn:hover { transform: translateY(-1px); }
 .hint { display: block; font-size: 12px; color: #cfe9f5; margin-top: 10px; }
 
+/* === FOOTER === */
 .fomo { margin-top: 30px; font-size: 15px; opacity: .9; }
 .pdfnote { margin-top: 8px; font-size: 14px; opacity: .95; }
 .footer { margin-top: 10px; font-size: 13px; opacity: .9; }
@@ -132,10 +158,14 @@ h1 {
   box-shadow: var(--shadow);
   cursor: pointer;
   user-select: none;
+  transition: background .2s;
 }
+.lang:hover { background: rgba(0,0,0,.7); }
 </style>
 </head>
 <body>
+
+<!-- === Language Button === -->
 <div class="lang" id="langToggle">🌐 <span id="currentLang">RU</span></div>
 
 <main class="wrap">
@@ -174,7 +204,7 @@ h1 {
   <div class="footer">Океан объединяет поколения 🌊</div>
 </main>
 
-<!-- === Pixel === -->
+<!-- === Meta Pixel === -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};
