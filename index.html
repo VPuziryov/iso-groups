@@ -4,9 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Dive Community — iScuba.online</title>
-<meta name="description" content="Dive 50Plus и iScuba Kids — сообщества для взрослых и детей, кто любит море и подводный мир.">
+<meta name="description" content="Dive 50Plus и iScuba Kids — сообщества для взрослых и детей, кто любит море и подводный мир. Присоединяйтесь и получайте полезные материалы.">
 <style>
-:root {
+:root{
   --text:#e9f5ff;
   --text-strong:#ffffff;
   --accent:#00c9ff;
@@ -15,170 +15,229 @@
   --radius:18px;
 }
 
-/* === BASE === */
+/* Base */
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
 body{
   font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
   color:var(--text);
-  background-color:#001f2c;
-  overflow-x:hidden;
+  background-color:#001f2c;           /* fallback */
+  min-height:100vh;
   display:flex;justify-content:center;align-items:flex-start;
-  text-align:center;min-height:100vh;position:relative;
+  text-align:center;position:relative;overflow-x:hidden;
 }
 
-/* === FLOATING BACKGROUND === */
+/* Фон — отдельный fixed-слой + overlay, работает на мобилках */
 .bg{
   position:fixed;top:0;left:0;width:100%;height:110%;
   background:url('background-ocean.jpg') center center / cover no-repeat;
-  transform:translateY(0);transition:transform .25s ease-out;
-  will-change:transform;z-index:-2;
+  transform:translateY(0);
+  transition:transform .25s ease-out;
+  will-change:transform;
+  z-index:-2;
 }
 .overlay{
   position:fixed;inset:0;
-  background:linear-gradient(to bottom,rgba(0,0,0,.6),rgba(0,0,0,.25),rgba(0,0,0,.75));
+  background:linear-gradient(to bottom, rgba(0,0,0,.6), rgba(0,0,0,.25), rgba(0,0,0,.75));
   z-index:-1;
 }
 
-/* === CONTENT === */
+/* Layout */
 .wrap{position:relative;z-index:2;width:100%;max-width:1000px;padding:40px 18px 72px}
+
+/* Header */
 .brand{font-weight:800;color:var(--accent2);letter-spacing:.4px;font-size:13px;text-transform:uppercase;opacity:.95}
 h1{font-family:Georgia,serif;font-size:clamp(26px,4vw,44px);margin:10px 0;color:var(--text-strong);text-shadow:0 2px 14px rgba(0,0,0,.6)}
 .sub{color:var(--text);opacity:.95;font-size:clamp(15px,2vw,18px);margin-bottom:14px}
 .byline{font-size:13px;opacity:.9;margin-bottom:20px}
 .context{font-size:17px;margin-bottom:20px;color:var(--text-strong)}
 
+/* Cards */
 .cards{display:grid;grid-template-columns:1fr;gap:20px;max-width:900px;margin:0 auto}
-@media(min-width:860px){.cards{grid-template-columns:1fr 1fr}}
+@media (min-width:860px){.cards{grid-template-columns:1fr 1fr}}
 
 .card{
-  display:grid;grid-template-rows:180px auto;
+  display:grid;grid-template-rows:180px auto; /* mobile: фото сверху */
   border-radius:var(--radius);overflow:hidden;
   border:1px solid rgba(255,255,255,.12);
   box-shadow:var(--shadow);
-  background:rgba(0,0,0,.45);text-align:left;
+  background:rgba(0,0,0,.45);
+  text-align:left;
 }
-@media(min-width:860px){.card{grid-template-columns:42% 58%;grid-template-rows:auto;min-height:320px;}}
+@media (min-width:860px){
+  .card{
+    grid-template-columns:42% 58%;   /* desktop: фото слева */
+    grid-template-rows:auto;
+    min-height:320px;
+  }
+}
 
-.media{position:relative;overflow:hidden;background:#01222f;}
-.media::before{content:"";position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(1.05) contrast(1.1) saturate(1.1);}
+/* Media */
+.media{position:relative;overflow:hidden;background:#01222f}
+.media::before{
+  content:"";position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  filter:brightness(1.05) contrast(1.1) saturate(1.1);
+}
 .media--50::before{background-image:url('dive50plus-bg.jpg');}
 .media--kids::before{background-image:url('bg-iscubakids-snorkel.jpg');background-position:center top;}
-.media::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 120px rgba(0,0,0,.35);pointer-events:none;}
+.media::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 120px rgba(0,0,0,.35);pointer-events:none}
 
+/* Content */
 .inner{padding:22px}
-@media(min-width:860px){.inner{padding:26px 24px}}
+@media (min-width:860px){.inner{padding:26px 24px}}
 
 .eyebrow{font-size:12px;font-weight:800;text-transform:uppercase;color:var(--accent2);opacity:.95;margin-bottom:6px}
 .title{font-weight:900;font-size:22px;margin:0 0 8px;color:var(--text-strong)}
 .desc{font-size:15px;color:var(--text);opacity:.95;margin:0 0 14px}
-.btn{display:inline-block;padding:12px 18px;border-radius:12px;font-weight:800;text-decoration:none;color:#00121a;box-shadow:0 6px 20px rgba(0,0,0,.25);transition:.2s}
+
+.btn{
+  display:inline-block;padding:12px 18px;border-radius:12px;
+  font-weight:800;text-decoration:none;color:#00121a;
+  box-shadow:0 6px 20px rgba(0,0,0,.25);
+  transition:.2s;
+}
 .btn:hover{transform:translateY(-1px)}
 .btn--50{background:linear-gradient(180deg,#6ee8f9,#24b9e6)}
 .btn--kids{background:linear-gradient(180deg,#9af6c0,#3eea95)}
-.reward{font-size:14px;color:#aaf7ff;margin-top:14px;font-weight:600;line-height:1.4;}
+
+.reward{font-size:14px;color:#aaf7ff;margin-top:14px;font-weight:600;line-height:1.4}
+
+/* Footer texts */
 .fomo{margin-top:26px;font-size:15px;opacity:.9}
 .pdfnote{margin-top:8px;font-size:14px;opacity:.95}
 .footer{margin-top:10px;font-size:13px;opacity:.9}
 
-/* === LANG SELECT === */
-.lang{position:absolute;top:10px;right:10px;background:rgba(0,0,20,.7);border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:6px 10px;z-index:10}
-.lang select{background:transparent;border:none;color:#fff;font-weight:600;font-size:14px;outline:none;cursor:pointer}
+/* Lang switcher */
+.lang{
+  position:absolute;top:10px;right:10px;
+  background:rgba(0,0,20,.7);
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:12px;padding:6px 10px;z-index:10
+}
+.lang select{
+  background:transparent;border:none;
+  color:#fff;font-weight:600;font-size:14px;outline:none;cursor:pointer
+}
 .lang select option{color:#000}
 </style>
 </head>
 <body>
-<div class="bg" id="bg"></div>
-<div class="overlay"></div>
+  <!-- фон и затемнение -->
+  <div class="bg" id="bg"></div>
+  <div class="overlay"></div>
 
-<main class="wrap">
-  <div class="lang">🌐
-    <select id="langSelect">
-      <option value="ru">RU</option><option value="en">EN</option>
-      <option value="de">DE</option><option value="fr">FR</option>
-      <option value="it">IT</option><option value="lv">LV</option>
-    </select>
-  </div>
+  <main class="wrap">
+    <!-- языки -->
+    <div class="lang">🌐
+      <select id="langSelect" aria-label="Language">
+        <option value="ru">RU</option>
+        <option value="en">EN</option>
+        <option value="de">DE</option>
+        <option value="fr">FR</option>
+        <option value="it">IT</option>
+        <option value="lv">LV</option>
+      </select>
+    </div>
 
-  <div class="brand">iScuba.online</div>
-  <h1 data-lang="title">Сообщества для тех, кто любит море</h1>
-  <p class="sub" data-lang="subtitle">Открытые Facebook-группы для общения, опыта и путешествий.</p>
-  <p class="byline" data-lang="byline">© Виталий Пузырёв, инструктор-тренер SSI</p>
-  <p class="context" data-lang="choose">🌊 Выберите сообщество, которое ближе вам:</p>
+    <div class="brand">iScuba.online</div>
+    <h1 class="h1" data-lang="title">Сообщества для тех, кто любит море</h1>
+    <p class="sub" data-lang="subtitle">Открытые Facebook-группы для общения, опыта и путешествий.</p>
+    <p class="byline" data-lang="byline">© Виталий Пузырёв, инструктор-тренер SSI</p>
+    <p class="context" data-lang="choose">🌊 Выберите сообщество, которое ближе вам:</p>
 
-  <section class="cards">
-    <article class="card">
-      <div class="media media--50"></div>
-      <div class="inner">
-        <div class="eyebrow" data-lang="adult">Зрелый дайвинг 50+</div>
-        <h2 class="title" data-lang="diveTitle">Dive 50Plus — ныряем по-взрослому</h2>
-        <p class="desc" data-lang="diveDesc">Осознанные погружения, комфорт и маршруты, которые хочется повторять.</p>
-        <a class="btn btn--50" id="group50" href="https://www.facebook.com/groups/dive50plus/" target="_blank" rel="noopener" data-lang="join50">Присоединиться к Dive 50Plus</a>
-        <p class="reward" data-lang="reward">🎁 После вступления получите PDF-гайд «7 неочевидных правил дайвера 50+»</p>
-      </div>
-    </article>
+    <section class="cards">
+      <!-- Dive 50Plus -->
+      <article class="card">
+        <div class="media media--50" aria-hidden="true"></div>
+        <div class="inner">
+          <div class="eyebrow" data-lang="adult">Зрелый дайвинг 50+</div>
+          <h2 class="title" data-lang="diveTitle">Dive 50Plus — ныряем по-взрослому</h2>
+          <p class="desc" data-lang="diveDesc">Осознанные погружения, комфорт и маршруты, которые хочется повторять.</p>
+          <a class="btn btn--50" id="group50" href="https://www.facebook.com/groups/dive50plus/" target="_blank" rel="noopener" data-lang="join50">Присоединиться к Dive 50Plus</a>
+          <p class="reward" data-lang="reward">🎁 После вступления получите PDF-гайд «7 неочевидных правил дайвера 50+»</p>
+        </div>
+      </article>
 
-    <article class="card">
-      <div class="media media--kids"></div>
-      <div class="inner">
-        <div class="eyebrow" data-lang="kids">Дети и море</div>
-        <h2 class="title" data-lang="kidsTitle">iScuba Kids — школа под водой и в жизни</h2>
-        <p class="desc" data-lang="kidsDesc">Без гаджетов и спешки. С доверием, смыслом и настоящими эмоциями. Здесь дети учатся видеть мир, верить в себя и двигаться вперёд.</p>
-        <a class="btn btn--kids" id="groupKids" href="https://www.facebook.com/groups/iscubakidsopen/" target="_blank" rel="noopener" data-lang="joinKids">Присоединиться к iScuba Kids</a>
-      </div>
-    </article>
-  </section>
+      <!-- iScuba Kids -->
+      <article class="card">
+        <div class="media media--kids" aria-hidden="true"></div>
+        <div class="inner">
+          <div class="eyebrow" data-lang="kids">Дети и море</div>
+          <h2 class="title" data-lang="kidsTitle">iScuba Kids — школа под водой и в жизни</h2>
+          <p class="desc" data-lang="kidsDesc">Без гаджетов и спешки. С доверием, смыслом и настоящими эмоциями. Здесь дети учатся видеть мир, верить в себя и двигаться вперёд.</p>
+          <a class="btn btn--kids" id="groupKids" href="https://www.facebook.com/groups/iscubakidsopen/" target="_blank" rel="noopener" data-lang="joinKids">Присоединиться к iScuba Kids</a>
+        </div>
+      </article>
+    </section>
 
-  <p class="fomo" data-lang="fomo">Участники делятся опытом и планируют сафари каждую неделю — присоединяйтесь!</p>
-  <p class="pdfnote" data-lang="pdf">📘 PDF появится в закреплённом посте сразу после вступления в Dive 50Plus.</p>
-  <div class="footer" data-lang="footer">Океан объединяет поколения 🌊</div>
-</main>
+    <p class="fomo" data-lang="fomo">Участники делятся опытом и планируют сафари каждую неделю — присоединяйтесь!</p>
+    <p class="pdfnote" data-lang="pdf">📘 PDF появится в закреплённом посте сразу после вступления в группу Dive 50Plus.</p>
+    <div class="footer" data-lang="footer">Океан объединяет поколения 🌊</div>
+  </main>
 
-<script>
-/* === PARALLAX BG === */
-const bg=document.getElementById('bg');
-window.addEventListener('scroll',()=>{bg.style.transform=`translateY(${window.scrollY*0.2}px)`});
+  <!-- ===== Logic: parallax, i18n, pixel clicks ===== -->
+  <script>
+  /* Parallax */
+  const bg=document.getElementById('bg');
+  window.addEventListener('scroll',()=>{ bg.style.transform=`translateY(${window.scrollY*0.2}px)`; });
 
-/* === LANGUAGES === */
-const dict={ /* тот же словарь, что в предыдущем сообщении */ };
-const sel=document.getElementById("langSelect");
-function setLang(l){const t={...dict.en,...(dict[l]||{})};
-document.documentElement.lang=l;sel.value=l;localStorage.setItem("lang",l);
-document.querySelectorAll("[data-lang]").forEach(el=>{const k=el.dataset.lang;if(t[k])el.innerHTML=t[k];});}
-const supported=["ru","en","de","fr","it","lv"];
-const saved=localStorage.getItem("lang");
-const nav=(navigator.language||"en").substring(0,2).toLowerCase();
-setLang(supported.includes(saved)?saved:(supported.includes(nav)?nav:"en"));
-sel.addEventListener("change",e=>setLang(e.target.value));
+  /* i18n dictionary */
+  const dict={
+    ru:{title:"Сообщества для тех, кто любит море",subtitle:"Открытые Facebook-группы для общения, опыта и путешествий.",byline:"© Виталий Пузырёв, инструктор-тренер SSI",choose:"🌊 Выберите сообщество, которое ближе вам:",adult:"Зрелый дайвинг 50+",diveTitle:"Dive 50Plus — ныряем по-взрослому",diveDesc:"Осознанные погружения, комфорт и маршруты, которые хочется повторять.",join50:"Присоединиться к Dive 50Plus",reward:"🎁 После вступления получите PDF-гайд «7 неочевидных правил дайвера 50+»",kids:"Дети и море",kidsTitle:"iScuba Kids — школа под водой и в жизни",kidsDesc:"Без гаджетов и спешки. С доверием, смыслом и настоящими эмоциями. Здесь дети учатся видеть мир, верить в себя и двигаться вперёд.",joinKids:"Присоединиться к iScuba Kids",fomo:"Участники делятся опытом и планируют сафари каждую неделю — присоединяйтесь!",pdf:"📘 PDF появится в закреплённом посте сразу после вступления в группу Dive 50Plus.",footer:"Океан объединяет поколения 🌊"},
+    en:{title:"Communities for those who love the sea",subtitle:"Open Facebook groups for experience sharing and travel.",byline:"© Vitaliy Puziryov, SSI Instructor Trainer",choose:"🌊 Choose the community closer to you:",adult:"Mature Diving 50+",diveTitle:"Dive 50Plus — Dive Like a Pro",diveDesc:"Mindful diving, comfort, and routes you'll want to repeat.",join50:"Join Dive 50Plus",reward:"🎁 After joining, get the PDF guide ‘7 Subtle Rules for Divers 50+’",kids:"Kids and the Sea",kidsTitle:"iScuba Kids — School Underwater and in Life",kidsDesc:"No gadgets or rush. With trust, purpose, and real emotions. Here kids learn to see the world, believe in themselves, and move forward.",joinKids:"Join iScuba Kids",fomo:"Members share insights and plan new safaris every week — join us!",pdf:"📘 The PDF is in the pinned post right after joining Dive 50Plus.",footer:"The ocean unites generations 🌊"},
+    de:{title:"Gemeinschaften für Meeresliebhaber",subtitle:"Offene Facebook-Gruppen für Erfahrung und Reisen.",byline:"© Vitaliy Puziryov, SSI Instructor Trainer",choose:"🌊 Wähle die Gemeinschaft, die dir näher steht:",adult:"Tauchen 50+",diveTitle:"Dive 50Plus — Erwachsen tauchen",diveDesc:"Bewusstes Tauchen, Komfort und Routen, die man wiederholen möchte.",join50:"Dive 50Plus beitreten",reward:"🎁 Nach dem Beitritt erhältst du das PDF „7 Regeln für Taucher 50+“",kids:"Kinder und Meer",kidsTitle:"iScuba Kids — Schule unter Wasser und im Leben",kidsDesc:"Ohne Geräte und Eile. Mit Vertrauen und echten Emotionen. Hier lernen Kinder, an sich zu glauben.",joinKids:"iScuba Kids beitreten",fomo:"Mitglieder teilen Erfahrungen und planen wöchentliche Safaris.",pdf:"📘 Das PDF findest du im angepinnten Beitrag nach dem Beitritt.",footer:"Der Ozean vereint Generationen 🌊"},
+    fr:{title:"Communautés pour ceux qui aiment la mer",subtitle:"Groupes Facebook ouverts pour partager expériences et voyages.",byline:"© Vitaliy Puziryov, formateur SSI",choose:"🌊 Choisissez la communauté qui vous correspond :",adult:"Plongée adulte 50+",diveTitle:"Dive 50Plus — Plongez en conscience",diveDesc:"Plongées confortables et itinéraires à refaire.",join50:"Rejoindre Dive 50Plus",reward:"🎁 Après adhésion, recevez le guide PDF « 7 règles du plongeur 50+ »",kids:"Enfants et mer",kidsTitle:"iScuba Kids — École sous l’eau et dans la vie",kidsDesc:"Sans gadgets ni stress. Avec confiance et émotions vraies. Ici, les enfants apprennent à croire en eux.",joinKids:"Rejoindre iScuba Kids",fomo:"Les membres partagent leurs expériences et planifient des safaris chaque semaine.",pdf:"📘 Le PDF est dans le post épinglé après l’adhésion.",footer:"L’océan unit les générations 🌊"},
+    it:{title:"Comunità per chi ama il mare",subtitle:"Gruppi Facebook aperti per esperienze e viaggi.",byline:"© Vitaliy Puziryov, istruttore-trainer SSI",choose:"🌊 Scegli la community più vicina a te:",adult:"Immersioni 50+",diveTitle:"Dive 50Plus — immersioni consapevoli",diveDesc:"Immersioni confortevoli e percorsi da rivivere.",join50:"Unisciti a Dive 50Plus",reward:"🎁 Dopo l’iscrizione ricevi il PDF «7 regole del sub 50+»",kids:"Bambini e mare",kidsTitle:"iScuba Kids — scuola sott’acqua e nella vita",kidsDesc:"Senza dispositivi e senza fretta. Con fiducia ed emozioni vere. Qui i bambini imparano a credere in sé stessi.",joinKids:"Unisciti a iScuba Kids",fomo:"I membri condividono esperienze e organizzano safari ogni settimana.",pdf:"📘 Il PDF è nel post fissato subito dopo l’iscrizione a Dive 50Plus.",footer:"L’oceano unisce le generazioni 🌊"},
+    lv:{title:"Kopienas tiem, kas mīl jūru",subtitle:"Atvērtas Facebook grupas pieredzei un ceļojumiem.",byline:"© Vitālijs Puzirjovs, SSI instruktors-treneris",choose:"🌊 Izvēlies sev tuvāko kopienu:",adult:"Niršana 50+",diveTitle:"Dive 50Plus — niršana ar pieredzi",diveDesc:"Apzinātas niršanas, komforts un maršruti, ko gribas atkārtot.",join50:"Pievienoties Dive 50Plus",reward:"🎁 Pēc pievienošanās saņem PDF ceļvedi «7 noteikumi nirējiem 50+»",kids:"Bērni un jūra",kidsTitle:"iScuba Kids — skola zem ūdens un dzīvē",kidsDesc:"Bez ierīcēm un steigas. Ar uzticību un īstām emocijām. Šeit bērni mācās redzēt pasauli un ticēt sev.",joinKids:"Pievienoties iScuba Kids",fomo:"Dalībnieki dalās pieredzē un plāno safari katru nedēļu.",pdf:"📘 PDF ir piespraustajā ierakstā uzreiz pēc pievienošanās Dive 50Plus.",footer:"Okeāns vieno paaudzes 🌊"}
+  };
 
-/* === PIXEL TRACKING === */
-window.addEventListener('load',()=>{
-  const g50=document.getElementById('group50');
-  const gKids=document.getElementById('groupKids');
-  [g50,gKids].forEach(el=>{
-    if(!el)return;
-    el.addEventListener('click',()=>{
+  const select = document.getElementById('langSelect');
+  const supported = Object.keys(dict);
+
+  function setLang(l){
+    const t = dict[l] || dict.en;
+    document.documentElement.lang = l;
+    select.value = l;
+    localStorage.setItem('lang', l);
+    document.querySelectorAll('[data-lang]').forEach(el=>{
+      const k = el.dataset.lang;
+      if(t[k]) el.innerHTML = t[k];
+    });
+  }
+
+  // автоопределение
+  const saved = localStorage.getItem('lang');
+  const nav = (navigator.language || 'en').substring(0,2).toLowerCase();
+  setLang( supported.includes(saved) ? saved : (supported.includes(nav) ? nav : 'en') );
+
+  select.addEventListener('change', e => setLang(e.target.value));
+
+  /* Pixel клики — только при клике */
+  window.addEventListener('load', ()=>{
+    const g50 = document.getElementById('group50');
+    const gKids = document.getElementById('groupKids');
+    if(g50) g50.addEventListener('click', ()=>{
       fbq('trackCustom','Subscribe');
-      if(el.id==='group50')fbq('trackCustom','click_group50plus');
-      if(el.id==='groupKids')fbq('trackCustom','click_groupkids');
+      fbq('trackCustom','click_group50plus');
+    });
+    if(gKids) gKids.addEventListener('click', ()=>{
+      fbq('trackCustom','Subscribe');
+      fbq('trackCustom','click_groupkids');
     });
   });
-});
-</script>
+  </script>
 
-<!-- === META PIXEL === -->
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);
-t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
-(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-
-fbq('init','675997335920840');
-fbq('track','PageView');
-setTimeout(()=>fbq('trackCustom','ViewContent_groups_7s'),7000);
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=675997335920840&ev=PageView&noscript=1"/></noscript>
+  <!-- ===== Meta Pixel ===== -->
+  <script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init','675997335920840');           /* ваш Pixel ID */
+  fbq('track','PageView');                 /* стандарт */
+  setTimeout(()=>fbq('trackCustom','ViewContent_groups_7s'),7000);  /* удержание 7с */
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=675997335920840&ev=PageView&noscript=1"/></noscript>
 </body>
 </html>
