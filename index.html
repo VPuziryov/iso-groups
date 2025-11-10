@@ -185,18 +185,18 @@ h1{font-family:Georgia,serif;font-size:clamp(26px,4vw,44px);margin:10px 0;color:
     <div class="footer" data-lang="footer">Океан объединяет поколения 🌊</div>
   </main>
 
+<!-- Parallax & reveal -->
 <script>
-/* Parallax */
 const bg=document.getElementById('bg');
 window.addEventListener('scroll',()=>{bg.style.transform=`translateY(${window.scrollY*0.2}px)`;});
-
-/* Плавное появление карточек */
 const observer=new IntersectionObserver(entries=>{
  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')});
 },{threshold:.2});
 document.querySelectorAll('.card').forEach(c=>observer.observe(c));
+</script>
 
-/* Переключатель языков */
+<!-- i18n -->
+<script>
 const dict = {
   ru: {
     title: "Сообщества для тех, кто любит море",
@@ -322,46 +322,60 @@ function setLang(l){
 const saved = localStorage.getItem('lang');
 setLang(saved || 'ru');
 select.addEventListener('change', e => setLang(e.target.value));
-
 </script>
 
-<!-- Pixel events -->
+<!-- Meta Pixel Base -->
 <script>
-function safeFbq(eventName){
-  if (typeof fbq === 'function') {
-    fbq('trackCustom', eventName);
-  } else {
-    // повторить через 500 мс, максимум 10 раз
-    let attempts = 0;
-    const interval = setInterval(()=>{
-      if (typeof fbq === 'function') {
-        fbq('trackCustom', eventName);
-        clearInterval(interval);
-      }
-      if (++attempts > 10) clearInterval(interval);
-    }, 500);
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+fbq('init','675997335920840');         // <- твой Pixel ID
+fbq('track','PageView');                // PageView — стандарт
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=675997335920840&ev=PageView&noscript=1"/></noscript>
+
+<!-- Pixel Events (robust) -->
+<script>
+/**
+ * Надёжный вызов кастомного события Pixel с ожиданием fbq.
+ * Повторяет попытки до 5 секунд (10 раз по 500 мс).
+ */
+function fireFbq(eventName, params){
+  var attempts = 0;
+  function tryFire(){
+    if (typeof fbq === 'function') {
+      if (params) fbq('trackCustom', eventName, params);
+      else fbq('trackCustom', eventName);
+    } else if (attempts++ < 10) {
+      setTimeout(tryFire, 500);
+    }
   }
+  tryFire();
 }
 
-/* Обработчики кликов */
-window.addEventListener('DOMContentLoaded', ()=>{
-  const g50 = document.getElementById('group50');
-  const gKids = document.getElementById('groupKids');
-  if (g50) g50.addEventListener('click', ()=>{
-    safeFbq('Subscribe');
-    safeFbq('click_group50plus');
-  });
-  if (gKids) gKids.addEventListener('click', ()=>{
-    safeFbq('Subscribe');
-    safeFbq('click_groupkids');
+window.addEventListener('DOMContentLoaded', function(){
+  // Клики на кнопках — оба события
+  var g50 = document.getElementById('group50');
+  var gKids = document.getElementById('groupKids');
+
+  if (g50) g50.addEventListener('click', function(){
+    fireFbq('Subscribe');
+    fireFbq('click_group50plus');
   });
 
-  /* Отложенное событие — просмотр 7 секунд */
-  setTimeout(()=> safeFbq('ViewContent_groups_7s'), 7000);
+  if (gKids) gKids.addEventListener('click', function(){
+    fireFbq('Subscribe');
+    fireFbq('click_groupkids');
+  });
+
+  // Просмотр 7 секунд страницы
+  setTimeout(function(){
+    fireFbq('ViewContent_groups_7s');   // правильное имя
+  }, 7000);
 });
 </script>
 
-</script>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=675997335920840&ev=PageView&noscript=1"/></noscript>
 </body>
 </html>
