@@ -325,14 +325,42 @@ select.addEventListener('change', e => setLang(e.target.value));
 
 </script>
 
-<!-- Meta Pixel -->
+<!-- Pixel events -->
 <script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','675997335920840');
-fbq('track','PageView');
+function safeFbq(eventName){
+  if (typeof fbq === 'function') {
+    fbq('trackCustom', eventName);
+  } else {
+    // повторить через 500 мс, максимум 10 раз
+    let attempts = 0;
+    const interval = setInterval(()=>{
+      if (typeof fbq === 'function') {
+        fbq('trackCustom', eventName);
+        clearInterval(interval);
+      }
+      if (++attempts > 10) clearInterval(interval);
+    }, 500);
+  }
+}
+
+/* Обработчики кликов */
+window.addEventListener('DOMContentLoaded', ()=>{
+  const g50 = document.getElementById('group50');
+  const gKids = document.getElementById('groupKids');
+  if (g50) g50.addEventListener('click', ()=>{
+    safeFbq('Subscribe');
+    safeFbq('click_group50plus');
+  });
+  if (gKids) gKids.addEventListener('click', ()=>{
+    safeFbq('Subscribe');
+    safeFbq('click_groupkids');
+  });
+
+  /* Отложенное событие — просмотр 7 секунд */
+  setTimeout(()=> safeFbq('ViewContent_groups_7s'), 7000);
+});
+</script>
+
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=675997335920840&ev=PageView&noscript=1"/></noscript>
 </body>
