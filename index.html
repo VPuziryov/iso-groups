@@ -197,26 +197,132 @@ const observer=new IntersectionObserver(entries=>{
 document.querySelectorAll('.card').forEach(c=>observer.observe(c));
 
 /* Переключатель языков */
-const dict={ru:{title:"Сообщества для тех, кто любит море",subtitle:"Открытые Facebook-группы для общения, опыта и путешествий.",byline:"© Виталий Пузырёв, инструктор-тренер SSI",choose:"🌊 Выберите сообщество, которое ближе вам:",adult:"Зрелый дайвинг 50+",diveTitle:"Dive 50Plus — ныряем по-взрослому",diveDesc:"Осознанные погружения, комфорт и маршруты, которые хочется повторять.",join50:"Присоединиться",reward:"🎁 После вступления получите PDF-гайд «7 неочевидных правил дайвера 50+»",kids:"Дети и море",kidsTitle:"iScuba Kids — школа под водой и в жизни",kidsDesc:"Без гаджетов и спешки. С доверием, смыслом и настоящими эмоциями. Здесь дети учатся видеть мир, верить в себя и двигаться вперёд.",joinKids:"Присоединиться",fomo:"Участники делятся опытом и планируют сафари каждую неделю — присоединяйтесь!",pdf:"📘 PDF появится в закреплённом посте сразу после вступления в Dive 50Plus.",footer:"Океан объединяет поколения 🌊"}};
-const select=document.getElementById('langSelect');
-function setLang(l){const t=dict[l]||dict.ru;document.documentElement.lang=l;select.value=l;localStorage.setItem('lang',l);document.querySelectorAll('[data-lang]').forEach(el=>{const k=el.dataset.lang;if(t[k])el.innerHTML=t[k];});}
-const saved=localStorage.getItem('lang');setLang(saved||'ru');
-select.addEventListener('change',e=>setLang(e.target.value));
+const dict = {
+  ru: {
+    title: "Сообщества для тех, кто любит море",
+    subtitle: "Открытые Facebook-группы для общения, опыта и путешествий.",
+    byline: "© Виталий Пузырёв, инструктор-тренер SSI",
+    choose: "🌊 Выберите сообщество, которое ближе вам:",
+    adult: "Зрелый дайвинг 50+",
+    diveTitle: "Dive 50Plus — ныряем по-взрослому",
+    diveDesc: "Осознанные погружения, комфорт и маршруты, которые хочется повторять.",
+    join50: "Присоединиться",
+    reward: "🎁 После вступления получите PDF-гайд «7 неочевидных правил дайвера 50+»",
+    kids: "Дети и море",
+    kidsTitle: "iScuba Kids — школа под водой и в жизни",
+    kidsDesc: "Без гаджетов и спешки. С доверием, смыслом и настоящими эмоциями. Здесь дети учатся видеть мир, верить в себя и двигаться вперёд.",
+    joinKids: "Присоединиться",
+    fomo: "Участники делятся опытом и планируют сафари каждую неделю — присоединяйтесь!",
+    pdf: "📘 PDF появится в закреплённом посте сразу после вступления в Dive 50Plus.",
+    footer: "Океан объединяет поколения 🌊"
+  },
+  en: {
+    title: "Communities for those who love the sea",
+    subtitle: "Open Facebook groups for sharing, experience, and travel.",
+    byline: "© Vitaliy Puziryov, SSI Instructor Trainer",
+    choose: "🌊 Choose the community that fits you best:",
+    adult: "Mature Diving 50+",
+    diveTitle: "Dive 50Plus — Diving with Experience",
+    diveDesc: "Mindful dives, comfort, and routes you'll want to repeat.",
+    join50: "Join Group",
+    reward: "🎁 After joining, get the free PDF guide '7 Diving Rules for 50Plus Divers'.",
+    kids: "Kids and the Sea",
+    kidsTitle: "iScuba Kids — Learning under Water and in Life",
+    kidsDesc: "No gadgets, no rush. With trust, purpose, and real emotions. Kids learn to see the world and believe in themselves.",
+    joinKids: "Join Group",
+    fomo: "Members share experience and plan safaris every week — join us!",
+    pdf: "📘 The PDF will appear in the pinned post right after joining Dive 50Plus.",
+    footer: "The ocean connects generations 🌊"
+  },
+  de: {
+    title: "Gemeinschaften für Meeresliebhaber",
+    subtitle: "Offene Facebook-Gruppen für Austausch, Erfahrung und Reisen.",
+    byline: "© Vitaliy Puziryov, SSI Instructor Trainer",
+    choose: "🌊 Wählen Sie die Community, die zu Ihnen passt:",
+    adult: "Reifes Tauchen 50+",
+    diveTitle: "Dive 50Plus — Tauchen mit Erfahrung",
+    diveDesc: "Bewusstes Tauchen, Komfort und Routen, die man wiederholen möchte.",
+    join50: "Beitreten",
+    reward: "🎁 Nach dem Beitritt erhalten Sie das PDF '7 Regeln für 50Plus-Taucher'.",
+    kids: "Kinder und das Meer",
+    kidsTitle: "iScuba Kids — Schule unter Wasser und im Leben",
+    kidsDesc: "Ohne Gadgets, ohne Eile. Mit Vertrauen, Sinn und echten Emotionen.",
+    joinKids: "Beitreten",
+    fomo: "Mitglieder teilen Erfahrungen und planen jede Woche Safaris – machen Sie mit!",
+    pdf: "📘 Das PDF erscheint im angehefteten Beitrag nach dem Beitritt.",
+    footer: "Der Ozean verbindet Generationen 🌊"
+  },
+  fr: {
+    title: "Communautés pour les amoureux de la mer",
+    subtitle: "Groupes Facebook ouverts pour partager, apprendre et voyager.",
+    byline: "© Vitaliy Puziryov, instructeur-formateur SSI",
+    choose: "🌊 Choisissez la communauté qui vous correspond le mieux :",
+    adult: "Plongée Mature 50+",
+    diveTitle: "Dive 50Plus — Plonger en toute conscience",
+    diveDesc: "Plongées sereines, confort et itinéraires à revivre encore et encore.",
+    join50: "Rejoindre",
+    reward: "🎁 Après l’adhésion, recevez le PDF gratuit « 7 règles du plongeur 50Plus ».",
+    kids: "Les enfants et la mer",
+    kidsTitle: "iScuba Kids — L’école sous-marine et de la vie",
+    kidsDesc: "Sans gadgets, sans précipitation. Avec confiance et vraies émotions.",
+    joinKids: "Rejoindre",
+    fomo: "Les membres partagent leurs expériences et planifient des safaris chaque semaine — rejoignez-nous !",
+    pdf: "📘 Le PDF apparaîtra dans le post épinglé après l’adhésion.",
+    footer: "L’océan unit les générations 🌊"
+  },
+  it: {
+    title: "Comunità per chi ama il mare",
+    subtitle: "Gruppi Facebook aperti per condividere esperienze e viaggi.",
+    byline: "© Vitaliy Puziryov, istruttore-trainer SSI",
+    choose: "🌊 Scegli la comunità più adatta a te:",
+    adult: "Immersioni mature 50+",
+    diveTitle: "Dive 50Plus — Immergersi con esperienza",
+    diveDesc: "Immersioni consapevoli, comfort e itinerari da rivivere.",
+    join50: "Unisciti",
+    reward: "🎁 Dopo l’iscrizione riceverai il PDF gratuito '7 regole per subacquei 50Plus'.",
+    kids: "Bambini e mare",
+    kidsTitle: "iScuba Kids — Scuola sott’acqua e nella vita",
+    kidsDesc: "Senza gadget, senza fretta. Con fiducia e vere emozioni.",
+    joinKids: "Unisciti",
+    fomo: "I membri condividono esperienze e pianificano safari ogni settimana — unisciti!",
+    pdf: "📘 Il PDF apparirà nel post fissato subito dopo l’iscrizione.",
+    footer: "L’oceano unisce le generazioni 🌊"
+  },
+  lv: {
+    title: "Kopienas jūras mīļotājiem",
+    subtitle: "Atvērtas Facebook grupas pieredzei un ceļojumiem.",
+    byline: "© Vitaliy Puziryov, SSI Instruktors-Treneris",
+    choose: "🌊 Izvēlieties kopienu, kas jums tuvāka:",
+    adult: "Niršana pēc 50",
+    diveTitle: "Dive 50Plus — Niršana ar pieredzi",
+    diveDesc: "Apzināta niršana, komforts un maršruti, kurus gribas atkārtot.",
+    join50: "Pievienoties",
+    reward: "🎁 Pēc pievienošanās saņemsiet PDF ceļvedi '7 noteikumi 50Plus nirējiem'.",
+    kids: "Bērni un jūra",
+    kidsTitle: "iScuba Kids — Skola zem ūdens un dzīvē",
+    kidsDesc: "Bez gadžetiem un steigas. Ar uzticību un patiesām emocijām.",
+    joinKids: "Pievienoties",
+    fomo: "Dalībnieki dalās pieredzē un plāno safārus katru nedēļu — pievienojieties!",
+    pdf: "📘 PDF būs redzams piespraustajā ziņā pēc pievienošanās Dive 50Plus.",
+    footer: "Okeāns vieno paaudzes 🌊"
+  }
+};
 
-/* Pixel клики */
-window.addEventListener('load',()=>{
-  const g50=document.getElementById('group50');
-  const gKids=document.getElementById('groupKids');
-  if(g50) g50.addEventListener('click',()=>{fbq('trackCustom','Subscribe');fbq('trackCustom','click_group50plus');});
-  if(gKids) gKids.addEventListener('click',()=>{fbq('trackCustom','Subscribe');fbq('trackCustom','click_groupkids');});
-});
+const select = document.getElementById('langSelect');
+function setLang(l){
+  const t = dict[l] || dict.ru;
+  document.documentElement.lang = l;
+  select.value = l;
+  localStorage.setItem('lang', l);
+  document.querySelectorAll('[data-lang]').forEach(el=>{
+    const k = el.dataset.lang;
+    if(t[k]) el.innerHTML = t[k];
+  });
+}
+const saved = localStorage.getItem('lang');
+setLang(saved || 'ru');
+select.addEventListener('change', e => setLang(e.target.value));
 
-/* Отложенное событие Pixel (корректное) */
-window.addEventListener('DOMContentLoaded',function(){
-  setTimeout(function(){
-    if(typeof fbq==='function') fbq('trackCustom','ViewContent_groups_7s');
-  },7000);
-});
 </script>
 
 <!-- Meta Pixel -->
