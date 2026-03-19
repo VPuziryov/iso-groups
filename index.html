@@ -338,10 +338,6 @@ fbq('track','PageView');                // PageView — стандарт
 
 <!-- Pixel Events (robust) -->
 <script>
-/**
- * Надёжный вызов кастомного события Pixel с ожиданием fbq.
- * Повторяет попытки до 5 секунд (10 раз по 500 мс).
- */
 function fireFbq(eventName, params){
   var attempts = 0;
   function tryFire(){
@@ -356,24 +352,23 @@ function fireFbq(eventName, params){
 }
 
 window.addEventListener('DOMContentLoaded', function(){
-  // Клики на кнопках — оба события
+
   var g50 = document.getElementById('group50');
   var gKids = document.getElementById('groupKids');
 
   if (g50) g50.addEventListener('click', function(){
-    fireFbq('Subscribe');
-    fireFbq('click_group50plus');
+    fireFbq('Group_50Plus_Click');
   });
 
   if (gKids) gKids.addEventListener('click', function(){
-    fireFbq('Subscribe');
-    fireFbq('click_groupkids');
+    fireFbq('Group_Kids_Click');
   });
 
-  // Просмотр 7 секунд страницы
+  // 7 секунд
   setTimeout(function(){
-    fireFbq('ViewContent_groups_7s');   // правильное имя
+    fireFbq('ViewContent_groups_7s');
   }, 7000);
+
 });
 </script>
 
